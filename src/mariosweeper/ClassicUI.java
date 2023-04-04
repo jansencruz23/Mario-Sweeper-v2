@@ -4,6 +4,8 @@ import components.CirclePanel;
 import components.Components;
 import contracts.IHighScore;
 import highscore.HighScoreClassic;
+import highscore.HighScoreClassicUI;
+import highscore.Leaderboards;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -24,8 +26,11 @@ public class ClassicUI extends BaseGame {
     int[] goalScores = { 28, 95, 225 };
     String[] difficulty = { "Easy", "Medium", "Hard" };
     ArrayList<JLabel> lives = new ArrayList<JLabel>();
+    //ArrayList<IHighScore> leaderboards;
     
     Components components;
+    Leaderboards leaderboard = new Leaderboards();
+    Leaderboards leaderboards;
     HighScoreClassic highScoreClassic = new HighScoreClassic();
     HighScoreClassic highScore;
     JPanel roundPanel;
@@ -319,6 +324,11 @@ public class ClassicUI extends BaseGame {
         btnStart.setBounds(370, 20, 80, 60);
 
         btnHighScore.setText("HIGHSCORES");
+        btnHighScore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHighScoreActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnHighScore);
         btnHighScore.setBounds(140, 13, 120, 30);
 
@@ -396,6 +406,10 @@ public class ClassicUI extends BaseGame {
         }
     }//GEN-LAST:event_btnActionPerformed
 
+    private void btnHighScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHighScoreActionPerformed
+        new HighScoreClassicUI(leaderboard).setVisible(true);
+    }//GEN-LAST:event_btnHighScoreActionPerformed
+
     private void setHearts(){             
         final int NUMBER_OF_HEARTS = 3;
         
@@ -441,8 +455,8 @@ public class ClassicUI extends BaseGame {
         final int EASY_LEVEL = 0;
         final int MAX_LEVEL = 2;
         
-        int currentScore = getScore();
-        int currentLevel = getCurrentLevel();
+        var currentScore = getScore();
+        var currentLevel = getCurrentLevel();
         
         if(currentScore == goalScores[currentLevel])
         {
@@ -453,11 +467,13 @@ public class ClassicUI extends BaseGame {
 
             if (currentLevel == MAX_LEVEL)
             {
+                checkHighScore();
+                displayHighScore();
+                readLeaderboards();
                 displayWinner();
                 return;
             }
             
-            checkHighScore();
             formatDialog();
             goToNextLevel();
             //playSound(fileWin);
@@ -510,13 +526,13 @@ public class ClassicUI extends BaseGame {
     }
     
     private void askPlayAgain() {
-        ImageIcon icon = mario;
-        String message = "Do you want to play again?";
-        String title = "Winner!";
-        int optionType = JOptionPane.YES_NO_OPTION;
-        int messageType = JOptionPane.INFORMATION_MESSAGE;
+        var icon = mario;
+        var message = "Do you want to play again?";
+        var title = "Winner!";
+        var optionType = JOptionPane.YES_NO_OPTION;
+        var messageType = JOptionPane.INFORMATION_MESSAGE;
         
-        int option = JOptionPane.showConfirmDialog(null, message, title, optionType, messageType, icon);
+        var option = JOptionPane.showConfirmDialog(null, message, title, optionType, messageType, icon);
         
         if(option == 0)
             resetValues();
@@ -538,13 +554,12 @@ public class ClassicUI extends BaseGame {
         {            
             highScore = (HighScoreClassic) highScoreClassic.readHighScore().readObject();
             
-            int hsScore = highScore.getScore();
-            String hsName = highScore.getName();
-            double hsTime = highScore.getTime();
-            int hsLivesLeft = highScore.getLivesLeft();
+            var hsScore = highScore.getScore();
+            var hsName = highScore.getName();
+            var hsTime = highScore.getTime();
+            var hsLivesLeft = highScore.getLivesLeft();
             
-            btnHighScore.setText(
-                    String.format("%d - %s - %.1f", hsScore, hsName, hsTime, hsLivesLeft));
+            btnHighScore.setText(hsScore + "");
         }
         catch(Exception ex)
         {
@@ -552,9 +567,17 @@ public class ClassicUI extends BaseGame {
         }
     }
     
+    private void readLeaderboards(){
+        try{
+            leaderboards = (Leaderboards) leaderboard.readHighScore().readObject();
+        }
+        catch(Exception ex){}
+        
+    }
+    
     private void checkHighScore(){
-        double time = Double.parseDouble(lblTimer.getText());
-        int score = getScore();
+        var time = Double.parseDouble(lblTimer.getText());
+        var score = getScore();
         
         if(highScore == null)
             highScore = new HighScoreClassic();
@@ -562,16 +585,22 @@ public class ClassicUI extends BaseGame {
             return;
         else if(score == highScore.getScore() && time > highScore.getTime())
             return;
-
-        String name = JOptionPane.showInputDialog(null, "You beat the highscore! Enter your name", "0", JOptionPane.INFORMATION_MESSAGE);
+        
+        saveHighScore(score, time);
+    }
+    
+    private void saveHighScore(int score, double time){
+        var name = JOptionPane.showInputDialog(null, "You beat the highscore! Enter your name", "0", JOptionPane.INFORMATION_MESSAGE);
         
         highScore.setName(name);
         highScore.setScore(score);
         highScore.setTime(time);
-        System.out.println(name + score +" " +time);
+        highScore.setLivesLeft(lives.size());
+        
+        leaderboards.addToLeaderboards(this.highScore);
         highScore.saveHighScore(this.highScore);
     }
-    
+        
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -599,9 +628,7 @@ public class ClassicUI extends BaseGame {
                 new ClassicUI().setVisible(true);
             }
         });
-    }
-    
-  
+    }  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn1;
