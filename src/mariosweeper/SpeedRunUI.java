@@ -38,8 +38,8 @@ public class SpeedRunUI extends BaseGame {
         btn15 = new javax.swing.JButton();
         btn16 = new javax.swing.JButton();
         btnStart = new javax.swing.JButton();
-        txtHScore = new javax.swing.JTextField();
         txtScore = new javax.swing.JTextField();
+        btnHighScore = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -279,14 +279,6 @@ public class SpeedRunUI extends BaseGame {
         getContentPane().add(btnStart);
         btnStart.setBounds(370, 20, 80, 60);
 
-        txtHScore.setEditable(false);
-        txtHScore.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        txtHScore.setForeground(new java.awt.Color(153, 51, 0));
-        txtHScore.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtHScore.setText("no records yet");
-        getContentPane().add(txtHScore);
-        txtHScore.setBounds(140, 10, 180, 40);
-
         txtScore.setEditable(false);
         txtScore.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtScore.setForeground(new java.awt.Color(153, 51, 0));
@@ -294,6 +286,10 @@ public class SpeedRunUI extends BaseGame {
         txtScore.setText("2");
         getContentPane().add(txtScore);
         txtScore.setBounds(140, 50, 70, 40);
+
+        btnHighScore.setText("jButton1");
+        getContentPane().add(btnHighScore);
+        btnHighScore.setBounds(140, 20, 110, 23);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -332,7 +328,7 @@ public class SpeedRunUI extends BaseGame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        components = new Components(panelButtons, txtScore, btnStart, lblTimer, txtHScore, grid);
+        components = new Components(panelButtons, txtScore, btnStart, lblTimer, btnHighScore, grid);
         passComponents(components);
         startGame();
         assignPos();
@@ -441,6 +437,7 @@ public class SpeedRunUI extends BaseGame {
     private javax.swing.JButton btn7;
     private javax.swing.JButton btn8;
     private javax.swing.JButton btn9;
+    private javax.swing.JButton btnHighScore;
     private javax.swing.JButton btnStart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -449,7 +446,6 @@ public class SpeedRunUI extends BaseGame {
     private javax.swing.JLabel lblBg;
     private javax.swing.JLabel lblTimer;
     private javax.swing.JPanel panelButtons;
-    private javax.swing.JTextField txtHScore;
     private javax.swing.JTextField txtScore;
     // End of variables declaration//GEN-END:variables
 }

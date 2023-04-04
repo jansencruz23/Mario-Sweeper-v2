@@ -41,6 +41,10 @@ public class BaseGame extends JFrame {
         this.score = score;
     }
     
+    public void stopTimer(){
+        state = false;    
+    }
+    
     public void passComponents(Components components) {
         this.components = components;
         this.grid = components.getGrid();
@@ -216,15 +220,7 @@ public class BaseGame extends JFrame {
             btn.setBackground(new Color(221, 224, 229));
         }
     }
-    
-    public void stopTimer(){
-        state = false;    
-    }
-    
-    public void startTimer(){
-        state = true;
-    }
-    
+            
     private void colorButtons(){
         for(Component comp : components.getPanel().getComponents()){
             var btn = (JButton) comp;

@@ -2,6 +2,8 @@ package mariosweeper;
 
 import components.CirclePanel;
 import components.Components;
+import contracts.IHighScore;
+import highscore.HighScoreClassic;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -24,12 +26,15 @@ public class ClassicUI extends BaseGame {
     ArrayList<JLabel> lives = new ArrayList<JLabel>();
     
     Components components;
+    HighScoreClassic highScoreClassic = new HighScoreClassic();
+    HighScoreClassic highScore;
     JPanel roundPanel;
     
     public ClassicUI() {
         initComponents();
         setLocationRelativeTo(null);
         setHearts();
+        displayHighScore();
     }
 
     @SuppressWarnings("unchecked")
@@ -58,9 +63,9 @@ public class ClassicUI extends BaseGame {
         btn15 = new javax.swing.JButton();
         btn16 = new javax.swing.JButton();
         txtScore = new javax.swing.JTextField();
-        txtHScore = new javax.swing.JTextField();
         panelLives = new javax.swing.JPanel();
         btnStart = new javax.swing.JButton();
+        btnHighScore = new javax.swing.JButton();
         lblLevel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -299,14 +304,6 @@ public class ClassicUI extends BaseGame {
         getContentPane().add(txtScore);
         txtScore.setBounds(140, 50, 70, 40);
 
-        txtHScore.setEditable(false);
-        txtHScore.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        txtHScore.setForeground(new java.awt.Color(153, 51, 0));
-        txtHScore.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtHScore.setText("no records yet");
-        getContentPane().add(txtHScore);
-        txtHScore.setBounds(140, 10, 180, 40);
-
         panelLives.setOpaque(false);
         panelLives.setLayout(new java.awt.GridLayout(1, 3, 3, 0));
         getContentPane().add(panelLives);
@@ -320,6 +317,10 @@ public class ClassicUI extends BaseGame {
         });
         getContentPane().add(btnStart);
         btnStart.setBounds(370, 20, 80, 60);
+
+        btnHighScore.setText("HIGHSCORES");
+        getContentPane().add(btnHighScore);
+        btnHighScore.setBounds(140, 13, 120, 30);
 
         lblLevel.setText("Easy");
         getContentPane().add(lblLevel);
@@ -363,7 +364,7 @@ public class ClassicUI extends BaseGame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        components = new Components(panelButtons, txtScore, btnStart, lblTimer, txtHScore, grid, lblLevel, lives);
+        components = new Components(panelButtons, txtScore, btnStart, lblTimer, btnHighScore, grid, lblLevel, lives);
         passComponents(components);
         
         startGame();
@@ -374,7 +375,8 @@ public class ClassicUI extends BaseGame {
 
     private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
         JButton btn = (JButton) evt.getSource();
-        switch(btn.getName()){
+        switch(btn.getName())
+        {
             case "1": clicked(0,0,btn1); break;
             case "2": clicked(0,1,btn2); break;
             case "3": clicked(0,2,btn3); break;
@@ -423,10 +425,15 @@ public class ClassicUI extends BaseGame {
         panelLives.add(new JLabel());
         lives.remove(0);
             
-        if(lives.isEmpty()){
+        if(lives.isEmpty())
+        {
+            formatDialog();
+            stopTimer();
+            checkHighScore();
             showGameOver();
             panelLives.removeAll();
             setHearts();
+            displayHighScore();
         }
     }
     
@@ -450,10 +457,10 @@ public class ClassicUI extends BaseGame {
                 return;
             }
             
+            checkHighScore();
             formatDialog();
             goToNextLevel();
             //playSound(fileWin);
-            //checkHighScore();
             resetButtons();
         }
     }
@@ -461,13 +468,13 @@ public class ClassicUI extends BaseGame {
     private void resetButtons(){
         displayQuestionMarkButtons();
         resetGrid();
-        
         assignPos();
         print2d();
     }
             
     private int getCurrentLevel() {
-        switch(lblLevel.getText()) {
+        switch(lblLevel.getText()) 
+        {
             case "Easy": return 0;
             case "Medium": return 1;
             case "Hard": return 2;
@@ -476,7 +483,8 @@ public class ClassicUI extends BaseGame {
     }
     
     private void addScore(){
-        switch(getCurrentLevel()){
+        switch(getCurrentLevel())
+        {
             case 0:
                 setScore(getScore() + 2);
                 break;
@@ -517,11 +525,51 @@ public class ClassicUI extends BaseGame {
     }
     
     private void displayQuestionMarkButtons() {
-        for(Component comp : panelButtons.getComponents()){
+        for(Component comp : panelButtons.getComponents())
+        {
             var btn = (JButton) comp;
             btn.setDisabledIcon(questionMark);
             btn.setEnabled(true);
         }
+    }
+    
+    private void displayHighScore(){
+        try
+        {            
+            highScore = (HighScoreClassic) highScoreClassic.readHighScore().readObject();
+            
+            int hsScore = highScore.getScore();
+            String hsName = highScore.getName();
+            double hsTime = highScore.getTime();
+            int hsLivesLeft = highScore.getLivesLeft();
+            
+            btnHighScore.setText(
+                    String.format("%d - %s - %.1f", hsScore, hsName, hsTime, hsLivesLeft));
+        }
+        catch(Exception ex)
+        {
+            highScore = null;
+        }
+    }
+    
+    private void checkHighScore(){
+        double time = Double.parseDouble(lblTimer.getText());
+        int score = getScore();
+        
+        if(highScore == null)
+            highScore = new HighScoreClassic();
+        else if(score < highScore.getScore()) 
+            return;
+        else if(score == highScore.getScore() && time > highScore.getTime())
+            return;
+
+        String name = JOptionPane.showInputDialog(null, "You beat the highscore! Enter your name", "0", JOptionPane.INFORMATION_MESSAGE);
+        
+        highScore.setName(name);
+        highScore.setScore(score);
+        highScore.setTime(time);
+        System.out.println(name + score +" " +time);
+        highScore.saveHighScore(this.highScore);
     }
     
     public static void main(String args[]) {
@@ -572,6 +620,7 @@ public class ClassicUI extends BaseGame {
     private javax.swing.JButton btn7;
     private javax.swing.JButton btn8;
     private javax.swing.JButton btn9;
+    private javax.swing.JButton btnHighScore;
     private javax.swing.JButton btnStart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -581,7 +630,6 @@ public class ClassicUI extends BaseGame {
     private javax.swing.JLabel lblTimer;
     private javax.swing.JPanel panelButtons;
     private javax.swing.JPanel panelLives;
-    private javax.swing.JTextField txtHScore;
     private javax.swing.JTextField txtScore;
     // End of variables declaration//GEN-END:variables
 }

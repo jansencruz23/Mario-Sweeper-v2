@@ -8,32 +8,32 @@ import javax.swing.JTextField;
 
 public class Components {
     
-    JTextField txtScore, txtHScore;
+    JTextField txtScore;
     JPanel panel;
-    JButton btnStart;
+    JButton btnStart, btnHighScore;
     JLabel lblTimer, lblLevel;
     int[][] grid;
     ArrayList<JLabel> lives;
     
     public Components (JPanel panel, JTextField txtScore, JButton btnStart, JLabel lblTimer, 
-            JTextField txtHScore, int[][] grid, JLabel lblLevel, ArrayList<JLabel> lives) {
+            JButton btnHighScore, int[][] grid, JLabel lblLevel, ArrayList<JLabel> lives) {
     this.txtScore = txtScore;
     this.panel = panel;
     this.btnStart = btnStart;
     this.lblTimer = lblTimer;
-    this.txtHScore = txtHScore;
+    this.btnHighScore = btnHighScore;
     this.grid = grid;
     this.lblLevel = lblLevel;
     this.lives = lives;
     }
     
     public Components (JPanel panel, JTextField txtScore, JButton btnStart, JLabel lblTimer, 
-            JTextField txtHScore, int[][] grid) {
+            JButton btnHighScore, int[][] grid) {
     this.txtScore = txtScore;
     this.panel = panel;
     this.btnStart = btnStart;
     this.lblTimer = lblTimer;
-    this.txtHScore = txtHScore;
+    this.btnHighScore = btnHighScore;
     this.grid = grid;
     this.lblLevel = lblLevel;
     }
@@ -42,8 +42,8 @@ public class Components {
         return txtScore;
     }
 
-    public JTextField getTxtHScore() {
-        return txtHScore;
+    public JButton getTxtHScore() {
+        return btnHighScore;
     }
 
     public JPanel getPanel() {
