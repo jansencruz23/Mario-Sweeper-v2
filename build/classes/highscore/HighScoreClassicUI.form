@@ -4,12 +4,9 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[500, 400]"/>
+      <Dimension value="[500, 440]"/>
     </Property>
     <Property name="undecorated" type="boolean" value="true"/>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[500, 400]"/>
-    </Property>
     <Property name="resizable" type="boolean" value="false"/>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[500, 500]"/>
@@ -96,38 +93,74 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblScore1">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="score" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblName1">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="name" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblLives1">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="lives" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTime1">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="time" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel20">
           <Properties>
             <Property name="text" type="java.lang.String" value="2."/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel18">
+        <Component class="javax.swing.JLabel" name="lblScore2">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="score" noResource="true"/>
+          </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel15">
+        <Component class="javax.swing.JLabel" name="lblName2">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="name" noResource="true"/>
+          </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel14">
+        <Component class="javax.swing.JLabel" name="lblLives2">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="lives" noResource="true"/>
+          </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel11">
+        <Component class="javax.swing.JLabel" name="lblTime2">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="time" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
             <Property name="text" type="java.lang.String" value="3."/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel7">
+        <Component class="javax.swing.JLabel" name="lblScore3">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="score" noResource="true"/>
+          </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="lblName3">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="name" noResource="true"/>
+          </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
+        <Component class="javax.swing.JLabel" name="lblLives3">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="lives" noResource="true"/>
+          </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="lblTime3">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="time" noResource="true"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -138,7 +171,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="50" y="70" width="378" height="48"/>
+          <AbsoluteConstraints x="50" y="70" width="390" height="48"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -159,6 +192,13 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="400" y="20" width="60" height="50"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblBg">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="-50" y="-380" width="670" height="1110"/>
         </Constraint>
       </Constraints>
     </Component>
