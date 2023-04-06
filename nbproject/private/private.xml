@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/User/Jansen/Self%20Study/2023%20-%2004%20-%20APRIL/Java%20AWT/MarioSweeper/src/highscore/HighScoreSpeedRun.java</file>
+            <file>file:/D:/User/Jansen/Self%20Study/2023%20-%2004%20-%20APRIL/Java%20AWT/MarioSweeper/src/highscore/HighScoreClassicUI.java</file>
+            <file>file:/D:/User/Jansen/Self%20Study/2023%20-%2004%20-%20APRIL/Java%20AWT/MarioSweeper/src/highscore/Leaderboards.java</file>
             <file>file:/D:/User/Jansen/Self%20Study/2023%20-%2004%20-%20APRIL/Java%20AWT/MarioSweeper/src/mariosweeper/BaseGame.java</file>
             <file>file:/D:/User/Jansen/Self%20Study/2023%20-%2004%20-%20APRIL/Java%20AWT/MarioSweeper/src/mariosweeper/ClassicUI.java</file>
-            <file>file:/D:/User/Jansen/Self%20Study/2023%20-%2004%20-%20APRIL/Java%20AWT/MarioSweeper/src/mariosweeper/SpeedRunUI.java</file>
-            <file>file:/D:/User/Jansen/Self%20Study/2023%20-%2004%20-%20APRIL/Java%20AWT/MarioSweeper/src/contracts/IHighScore.java</file>
             <file>file:/D:/User/Jansen/Self%20Study/2023%20-%2004%20-%20APRIL/Java%20AWT/MarioSweeper/src/highscore/HighScoreClassic.java</file>
         </group>
     </open-files>

@@ -10,7 +10,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,7 +29,7 @@ public class ClassicUI extends BaseGame {
     
     Components components;
     Leaderboards leaderboard = new Leaderboards();
-    Leaderboards leaderboards;
+    //Leaderboards leaderboards;
     HighScoreClassic highScoreClassic = new HighScoreClassic();
     HighScoreClassic highScore;
     JPanel roundPanel;
@@ -40,6 +39,7 @@ public class ClassicUI extends BaseGame {
         setLocationRelativeTo(null);
         setHearts();
         displayHighScore();
+        readLeaderboards();
     }
 
     @SuppressWarnings("unchecked")
@@ -407,6 +407,7 @@ public class ClassicUI extends BaseGame {
     }//GEN-LAST:event_btnActionPerformed
 
     private void btnHighScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHighScoreActionPerformed
+        readLeaderboards();
         new HighScoreClassicUI(leaderboard).setVisible(true);
     }//GEN-LAST:event_btnHighScoreActionPerformed
 
@@ -469,7 +470,6 @@ public class ClassicUI extends BaseGame {
             {
                 checkHighScore();
                 displayHighScore();
-                readLeaderboards();
                 displayWinner();
                 return;
             }
@@ -569,10 +569,11 @@ public class ClassicUI extends BaseGame {
     
     private void readLeaderboards(){
         try{
-            leaderboards = (Leaderboards) leaderboard.readHighScore().readObject();
+            leaderboard = (Leaderboards) leaderboard.readHighScore().readObject();
         }
-        catch(Exception ex){}
-        
+        catch(Exception ex){
+            System.out.println("asd");
+        }  
     }
     
     private void checkHighScore(){
@@ -587,6 +588,8 @@ public class ClassicUI extends BaseGame {
             return;
         
         saveHighScore(score, time);
+        saveLeaderboards();
+        //leaderboards.addToLeaderboards(this.highScore);
     }
     
     private void saveHighScore(int score, double time){
@@ -597,8 +600,12 @@ public class ClassicUI extends BaseGame {
         highScore.setTime(time);
         highScore.setLivesLeft(lives.size());
         
-        leaderboards.addToLeaderboards(this.highScore);
         highScore.saveHighScore(this.highScore);
+    }
+    
+    private void saveLeaderboards(){
+        leaderboard.addToLeaderboards(this.highScore);
+        leaderboard.saveLeaderboards(leaderboard);
     }
         
     public static void main(String args[]) {

@@ -9,15 +9,15 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Leaderboards implements Serializable{
+public class Leaderboards implements Serializable {
     final String FILE_NAME = "leaderboards.bin";
-    ArrayList<IHighScore> leaderboards = new ArrayList<IHighScore>();
+    ArrayList<HighScoreClassic> leaderboards = new ArrayList<HighScoreClassic>();
     
-    public ArrayList<IHighScore> getLeaderboards() {
+    public ArrayList<HighScoreClassic> getLeaderboards() {
         return leaderboards;
     }
     
-    public void addToLeaderboards(IHighScore hs) {
+    public void addToLeaderboards(HighScoreClassic hs) {
         leaderboards.add(0, hs);
     }
     

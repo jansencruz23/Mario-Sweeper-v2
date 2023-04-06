@@ -7,16 +7,21 @@ import java.awt.GridLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.geom.RoundRectangle2D;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class HighScoreClassicUI  extends javax.swing.JFrame {
-    Leaderboards leaderboards;
+    private ArrayList<HighScoreClassic> leaderboards;
+    Leaderboards l;
     
     public HighScoreClassicUI(Leaderboards leaderboards) {
-        this.leaderboards = leaderboards;
+        this.l = leaderboards;
         initComponents();
         setLocationRelativeTo(null);
         displayHighScore();
+        //displayLeaderboard();
     }
 
     @SuppressWarnings("unchecked")
@@ -132,12 +137,18 @@ public class HighScoreClassicUI  extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnExitActionPerformed
     
-    private void displayHighScore(){  
-        for(IHighScore h : leaderboards.getLeaderboards()) {
-            HighScoreClassic hs = (HighScoreClassic) h;
-            System.out.println(hs.getName());
+    private void displayHighScore(){
+        try {
+            for(HighScoreClassic h : l.getLeaderboards()) {
+                System.out.println(h.getName());
         }
-
+        } catch (Exception ex) {
+            Logger.getLogger(HighScoreClassicUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void displayLeaderboard() {
+        lblScore1.setText(leaderboards.get(0).toString());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
