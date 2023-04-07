@@ -2,10 +2,8 @@ package leaderboard.ui;
 
 import components.CirclePanel;
 import leaderboards.serializables.BaseLeaderboardsSerializable;
-import highscore.serializables.HighScoreClassic;
 import highscore.serializables.HighScoreSpeedRun;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -13,13 +11,9 @@ import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JLabel;
 
 public class LeaderboardsSpeedrunUI extends BaseLeaderboards {
-    final int MAX_LEADERBOARD_SIZE = 3;
-    final int EMPTY = 0;
     private ArrayList<HighScoreSpeedRun> leaderboardsList;
-    BaseLeaderboardsSerializable leaderboards;
     
     public LeaderboardsSpeedrunUI(BaseLeaderboardsSerializable leaderboards) {
         super(leaderboards);
@@ -154,8 +148,10 @@ public class LeaderboardsSpeedrunUI extends BaseLeaderboards {
         {    
             for(HighScoreSpeedRun h : leaderboardsList) {
                 System.out.println(h.getName());
-        }
-        } catch (Exception ex) {
+            }
+        } 
+        catch (Exception ex) 
+        {
             Logger.getLogger(LeaderboardsClassicUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

@@ -23,37 +23,41 @@ public class BaseLeaderboards extends JFrame {
     public void displayColumn(String name, JPanel panelHighScore) {
         if(leaderboardsList.size() == EMPTY) 
             return;
-        else if(leaderboardsList.size() >= MAX_LEADERBOARD_SIZE){
-            int index = 0;            
-                while(index < MAX_LEADERBOARD_SIZE) {
-                    for(Component component : panelHighScore.getComponents()){
+        else 
+        {
+            int index = 0;           
+            while(index < MAX_LEADERBOARD_SIZE) 
+            {
+                for(Component component : panelHighScore.getComponents())
+                {
                     var lbl = (JLabel) component;
-                    if(lbl.getName() != null)
-                        if(lbl.getName().equals(name)){
-                            switch(name){
-                                case "score": 
-                                    lbl.setText(leaderboardsList.get(index).getScore() + "");
-                                    lbl.setName("done");
-                                    break;
-                                case "name":
-                                    lbl.setText(leaderboardsList.get(index).getName());
-                                    lbl.setName("done");
-                                    break;
-                                case "lives":
-                                    lbl.setText(leaderboardsList.get(index).getLivesLeft() + "");
-                                    lbl.setName("done");
-                                    break;  
-                                case "time":
-                                    lbl.setText(leaderboardsList.get(index).getTime() + "");
-                                    lbl.setName("done");
-                                    break;
-                            }
-                            index++;
-                        }
+                    if(lbl.getName() != null && lbl.getName().equals(name))
+                    {
+                        setLabelText(lbl, name, leaderboardsList.get(index));
+                        index++;
+                    }
+                    
+                    if(index == leaderboardsList.size()) 
+                        return;
                 }
             }
         }
     }
     
-    
+    public void setLabelText(JLabel lbl, String name, BaseHighScore leaderboard){
+        switch(name){
+            case "score": 
+                lbl.setText(leaderboard.getScore() + "");
+                break;
+            case "name":
+                lbl.setText(leaderboard.getName());
+                break;
+            case "lives":
+                lbl.setText(leaderboard.getLivesLeft() + "");
+                break;  
+            case "time":
+                lbl.setText(leaderboard.getTime() + "");
+                break;
+        }
+    }
 }

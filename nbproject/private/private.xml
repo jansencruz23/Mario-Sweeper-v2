@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/User/Jansen/Self%20Study/2023%20-%2004%20-%20APRIL/Java%20AWT/MarioSweeper/src/highscore/serializables/HighScoreClassic.java</file>
+            <file>file:/D:/User/Jansen/Self%20Study/2023%20-%2004%20-%20APRIL/Java%20AWT/MarioSweeper/src/leaderboard/ui/LeaderboardsClassicUI.java</file>
             <file>file:/D:/User/Jansen/Self%20Study/2023%20-%2004%20-%20APRIL/Java%20AWT/MarioSweeper/src/mariosweeper/BaseGame.java</file>
-            <file>file:/D:/User/Jansen/Self%20Study/2023%20-%2004%20-%20APRIL/Java%20AWT/MarioSweeper/src/mariosweeper/ClassicUI.java</file>
+            <file>file:/D:/User/Jansen/Self%20Study/2023%20-%2004%20-%20APRIL/Java%20AWT/MarioSweeper/src/leaderboards/serializables/LeaderboardsSpeedrun.java</file>
+            <file>file:/D:/User/Jansen/Self%20Study/2023%20-%2004%20-%20APRIL/Java%20AWT/MarioSweeper/src/highscore/serializables/HighScoreSpeedRun.java</file>
             <file>file:/D:/User/Jansen/Self%20Study/2023%20-%2004%20-%20APRIL/Java%20AWT/MarioSweeper/src/mariosweeper/SpeedRunUI.java</file>
+            <file>file:/D:/User/Jansen/Self%20Study/2023%20-%2004%20-%20APRIL/Java%20AWT/MarioSweeper/src/leaderboards/serializables/BaseLeaderboardsSerializable.java</file>
+            <file>file:/D:/User/Jansen/Self%20Study/2023%20-%2004%20-%20APRIL/Java%20AWT/MarioSweeper/src/highscore/serializables/BaseHighScore.java</file>
         </group>
     </open-files>
 </project-private>

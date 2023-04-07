@@ -12,7 +12,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class BaseLeaderboardsSerializable implements Serializable, ILeaderboards {
-    //final String FILE_NAME = "leaderboards.bin";
     ArrayList<IHighScore> leaderboards = new ArrayList<IHighScore>();
     
     public ArrayList<IHighScore> getLeaderboards() {
@@ -25,13 +24,15 @@ public class BaseLeaderboardsSerializable implements Serializable, ILeaderboards
     }
     
     public void saveLeaderboards(ILeaderboards leaderboards, String fileName) {
-        try{
+        try
+        {
             ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileName));
             output.writeObject(leaderboards);
             output.close();
             System.out.println("File saved");
         }
-        catch(Exception ex){
+        catch(Exception ex)
+        {
             System.out.println("File cannot be saved");
         }
     }
