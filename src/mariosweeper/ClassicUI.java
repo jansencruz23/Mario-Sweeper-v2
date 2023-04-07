@@ -2,10 +2,8 @@ package mariosweeper;
 
 import components.CirclePanel;
 import components.Components;
-import contracts.IHighScore;
 import highscore.serializables.HighScoreClassic;
 import leaderboard.ui.LeaderboardsClassicUI;
-import leaderboards.serializables.BaseLeaderboardsSerializable;
 import leaderboards.serializables.LeaderboardsClassic;
 import java.awt.Color;
 import java.awt.Component;
@@ -19,20 +17,18 @@ import javax.swing.border.EmptyBorder;
 
 /**
  *
- * @author user
+ * @author Jansen C. Cruz
  */
+
 public class ClassicUI extends BaseGame {      
     int[][] grid = new int[4][4];
     int[] goalScores = { 28, 95, 225 };
     String[] difficulty = { "Easy", "Medium", "Hard" };
     ArrayList<JLabel> lives = new ArrayList<JLabel>();
-    //ArrayList<IHighScore> leaderboards;
     
     Components components;
     LeaderboardsClassic leaderboard = new LeaderboardsClassic();
-    //Leaderboards leaderboards;
     HighScoreClassic highScore = new HighScoreClassic();
-    //HighScoreClassic highScore;
     JPanel roundPanel;
     
     public ClassicUI() {
@@ -373,8 +369,35 @@ public class ClassicUI extends BaseGame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-        private void setHearts(){             
+       
+    public static void main(String args[]) {
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ClassicUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ClassicUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ClassicUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ClassicUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        java.awt.EventQueue.invokeLater(() -> {
+            new ClassicUI().setVisible(true);
+        });
+    }  
+    
+    private void setHearts() {             
         final int NUMBER_OF_HEARTS = 3;
         
         panelLives.setLayout(new GridLayout(1,3,0,0));
@@ -651,33 +674,6 @@ public class ClassicUI extends BaseGame {
     private void btn16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn16ActionPerformed
         clicked(3, 3, btn16);
     }//GEN-LAST:event_btn16ActionPerformed
-        
-    public static void main(String args[]) {
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClassicUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClassicUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClassicUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClassicUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        java.awt.EventQueue.invokeLater(() -> {
-            new ClassicUI().setVisible(true);
-        });
-    }  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn1;

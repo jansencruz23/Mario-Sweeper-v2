@@ -58,13 +58,15 @@ public class BaseHighScore implements IHighScore, Serializable {
     
     @Override
     public void saveHighScore(IHighScore highScore, String fileName) {
-        try{
+        try
+        {
             ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileName));
             output.writeObject(highScore);
             output.close();
             System.out.println("File saved");
         }
-        catch(Exception ex){
+        catch(Exception ex)
+        {
             System.out.println("File cannot be saved");
         }
     }

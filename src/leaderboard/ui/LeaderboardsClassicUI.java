@@ -1,32 +1,20 @@
 package leaderboard.ui;
 
 import leaderboards.serializables.BaseLeaderboardsSerializable;
-import highscore.serializables.HighScoreClassic;
 import components.CirclePanel;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.geom.RoundRectangle2D;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class LeaderboardsClassicUI  extends BaseLeaderboards {
-    final int MAX_LEADERBOARD_SIZE = 3;
-    final int EMPTY = 0;
-    private ArrayList<HighScoreClassic> leaderboardsList;
-    BaseLeaderboardsSerializable leaderboards;
     
     public LeaderboardsClassicUI(BaseLeaderboardsSerializable leaderboards) {
         super(leaderboards);
         
-        this.leaderboards = leaderboards;
-        this.leaderboardsList = (ArrayList<HighScoreClassic>) (ArrayList<?>) leaderboards.getLeaderboards();
-        
         initComponents();
         setLocationRelativeTo(null);
-       //displayHighScore();
         
         displayColumn("score", panelHighScore);
         displayColumn("name", panelHighScore);
@@ -172,17 +160,6 @@ public class LeaderboardsClassicUI  extends BaseLeaderboards {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_btnExitActionPerformed
-    
-    private void displayHighScore(){
-        try 
-        {    
-            for(HighScoreClassic h : leaderboardsList) {
-                System.out.println(h.getName());
-        }
-        } catch (Exception ex) {
-            Logger.getLogger(LeaderboardsClassicUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;

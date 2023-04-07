@@ -2,28 +2,19 @@ package leaderboard.ui;
 
 import components.CirclePanel;
 import leaderboards.serializables.BaseLeaderboardsSerializable;
-import highscore.serializables.HighScoreSpeedRun;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.geom.RoundRectangle2D;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class LeaderboardsSpeedrunUI extends BaseLeaderboards {
-    private ArrayList<HighScoreSpeedRun> leaderboardsList;
     
     public LeaderboardsSpeedrunUI(BaseLeaderboardsSerializable leaderboards) {
         super(leaderboards);
         
-        this.leaderboards = leaderboards;
-        this.leaderboardsList = (ArrayList<HighScoreSpeedRun>) (ArrayList<?>) leaderboards.getLeaderboards();
-        
         initComponents();
         setLocationRelativeTo(null);
-        displayHighScore();
         
         displayColumn("score", panelHighScore);
         displayColumn("name", panelHighScore);
@@ -143,19 +134,6 @@ public class LeaderboardsSpeedrunUI extends BaseLeaderboards {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void displayHighScore(){
-        try 
-        {    
-            for(HighScoreSpeedRun h : leaderboardsList) {
-                System.out.println(h.getName());
-            }
-        } 
-        catch (Exception ex) 
-        {
-            Logger.getLogger(LeaderboardsClassicUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         setVisible(false);
         dispose();
