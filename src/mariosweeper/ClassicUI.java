@@ -3,9 +3,9 @@ package mariosweeper;
 import components.CirclePanel;
 import components.Components;
 import contracts.IHighScore;
-import highscore.HighScoreClassic;
-import highscore.HighScoreClassicUI;
-import highscore.Leaderboards;
+import highscore.serializables.HighScoreClassic;
+import highscore.ui.HighScoreClassicUI;
+import highscore.leaderboards.Leaderboards;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -630,10 +630,8 @@ public class ClassicUI extends BaseGame {
             java.util.logging.Logger.getLogger(ClassicUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ClassicUI().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new ClassicUI().setVisible(true);
         });
     }  
 

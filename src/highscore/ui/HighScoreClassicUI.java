@@ -1,5 +1,7 @@
-package highscore;
+package highscore.ui;
 
+import highscore.leaderboards.Leaderboards;
+import highscore.serializables.HighScoreClassic;
 import components.CirclePanel;
 import java.awt.Color;
 import java.awt.Component;
@@ -70,7 +72,6 @@ public class HighScoreClassicUI  extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(500, 440));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(500, 440));
         setResizable(false);
         setSize(new java.awt.Dimension(500, 500));
         getContentPane().setLayout(null);

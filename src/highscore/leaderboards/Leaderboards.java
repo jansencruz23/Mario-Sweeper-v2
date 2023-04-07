@@ -1,6 +1,8 @@
-package highscore;
+package highscore.leaderboards;
 
 import contracts.IHighScore;
+import contracts.ILeaderboards;
+import highscore.serializables.HighScoreClassic;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,7 +11,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Leaderboards implements Serializable {
+public class Leaderboards implements Serializable, ILeaderboards {
     final String FILE_NAME = "leaderboards.bin";
     ArrayList<HighScoreClassic> leaderboards = new ArrayList<HighScoreClassic>();
     
@@ -17,12 +19,14 @@ public class Leaderboards implements Serializable {
         return leaderboards;
     }
     
-    public void addToLeaderboards(HighScoreClassic hs) {
-        leaderboards.add(0, hs);
+    public void addToLeaderboards(IHighScore iHighScore) {
+        var highScore = (HighScoreClassic) iHighScore;
+        leaderboards.add(0, highScore);
     }
     
-    public void saveLeaderboards(Leaderboards leaderboards) {
+    public void saveLeaderboards(ILeaderboards leaderboards) {
         try{
+            
             ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(FILE_NAME));
             output.writeObject(leaderboards);
             output.close();

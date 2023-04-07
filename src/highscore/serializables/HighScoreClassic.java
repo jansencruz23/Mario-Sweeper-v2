@@ -1,4 +1,4 @@
-package highscore;
+package highscore.serializables;
 
 import contracts.IHighScore;
 import java.io.FileInputStream;
