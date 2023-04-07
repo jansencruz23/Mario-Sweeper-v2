@@ -1,10 +1,10 @@
 package mariosweeper;
 
 import components.Components;
-import highscore.leaderboards.LeaderboardsClassic;
-import highscore.leaderboards.LeaderboardsSpeedrun;
+import leaderboards.serializables.LeaderboardsClassic;
+import leaderboards.serializables.LeaderboardsSpeedrun;
 import highscore.serializables.HighScoreSpeedRun;
-import highscore.ui.LeaderboardsSpeedrunUI;
+import leaderboard.ui.LeaderboardsSpeedrunUI;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -362,10 +362,12 @@ public class SpeedRunUI extends BaseGame {
             score += 2;
             txtScore.setText(score + "");
             
+            stopTimer();
             formatDialog();
             displayWinner();
             //playSound(fileWin);
             checkHighScore();
+            displayHighScore();
             resetValues();
         }
     }
@@ -384,6 +386,7 @@ public class SpeedRunUI extends BaseGame {
         }
         catch(Exception ex)
         {
+            System.out.println("nal");
             highScore = null;
         }
     }

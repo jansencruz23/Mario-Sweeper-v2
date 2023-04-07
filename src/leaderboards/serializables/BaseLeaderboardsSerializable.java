@@ -1,4 +1,4 @@
-package highscore.leaderboards;
+package leaderboards.serializables;
 
 import contracts.IHighScore;
 import contracts.ILeaderboards;
@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BaseLeaderboards implements Serializable, ILeaderboards {
+public class BaseLeaderboardsSerializable implements Serializable, ILeaderboards {
     //final String FILE_NAME = "leaderboards.bin";
     ArrayList<IHighScore> leaderboards = new ArrayList<IHighScore>();
     

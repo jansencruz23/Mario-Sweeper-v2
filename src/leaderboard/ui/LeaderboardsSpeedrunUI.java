@@ -1,8 +1,9 @@
-package highscore.ui;
+package leaderboard.ui;
 
-import highscore.leaderboards.BaseLeaderboards;
-import highscore.serializables.HighScoreClassic;
 import components.CirclePanel;
+import leaderboards.serializables.BaseLeaderboardsSerializable;
+import highscore.serializables.HighScoreClassic;
+import highscore.serializables.HighScoreSpeedRun;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -14,24 +15,25 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 
-public class LeaderboardsClassicUI  extends javax.swing.JFrame {
+public class LeaderboardsSpeedrunUI extends BaseLeaderboards {
     final int MAX_LEADERBOARD_SIZE = 3;
     final int EMPTY = 0;
-    private ArrayList<HighScoreClassic> leaderboardsList;
-    BaseLeaderboards leaderboards;
+    private ArrayList<HighScoreSpeedRun> leaderboardsList;
+    BaseLeaderboardsSerializable leaderboards;
     
-    public LeaderboardsClassicUI(BaseLeaderboards leaderboards) {
+    public LeaderboardsSpeedrunUI(BaseLeaderboardsSerializable leaderboards) {
+        super(leaderboards);
+        
         this.leaderboards = leaderboards;
-        this.leaderboardsList = (ArrayList<HighScoreClassic>) (ArrayList<?>) leaderboards.getLeaderboards();
+        this.leaderboardsList = (ArrayList<HighScoreSpeedRun>) (ArrayList<?>) leaderboards.getLeaderboards();
         
         initComponents();
         setLocationRelativeTo(null);
-       //displayHighScore();
+        displayHighScore();
         
-        displayColumn("score");
-        displayColumn("name");
-        displayColumn("lives");
-        displayColumn("time");
+        displayColumn("score", panelHighScore);
+        displayColumn("name", panelHighScore);
+        displayColumn("time", panelHighScore);
     }
 
     @SuppressWarnings("unchecked")
@@ -50,31 +52,24 @@ public class LeaderboardsClassicUI  extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         lblScore1 = new javax.swing.JLabel();
         lblName1 = new javax.swing.JLabel();
-        lblLives1 = new javax.swing.JLabel();
         lblTime1 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         lblScore2 = new javax.swing.JLabel();
         lblName2 = new javax.swing.JLabel();
-        lblLives2 = new javax.swing.JLabel();
         lblTime2 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         lblScore3 = new javax.swing.JLabel();
         lblName3 = new javax.swing.JLabel();
-        lblLives3 = new javax.swing.JLabel();
         lblTime3 = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
-        lblBg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(500, 440));
-        setUndecorated(true);
-        setResizable(false);
+        setMinimumSize(new java.awt.Dimension(500, 500));
         setSize(new java.awt.Dimension(500, 500));
         getContentPane().setLayout(null);
 
@@ -92,9 +87,6 @@ public class LeaderboardsClassicUI  extends javax.swing.JFrame {
         jLabel13.setText("Name");
         panelHighScore.add(jLabel13);
 
-        jLabel5.setText("Lives Left");
-        panelHighScore.add(jLabel5);
-
         jLabel9.setText("Time");
         panelHighScore.add(jLabel9);
 
@@ -106,9 +98,6 @@ public class LeaderboardsClassicUI  extends javax.swing.JFrame {
 
         lblName1.setName("name"); // NOI18N
         panelHighScore.add(lblName1);
-
-        lblLives1.setName("lives"); // NOI18N
-        panelHighScore.add(lblLives1);
 
         lblTime1.setName("time"); // NOI18N
         panelHighScore.add(lblTime1);
@@ -122,9 +111,6 @@ public class LeaderboardsClassicUI  extends javax.swing.JFrame {
         lblName2.setName("name"); // NOI18N
         panelHighScore.add(lblName2);
 
-        lblLives2.setName("lives"); // NOI18N
-        panelHighScore.add(lblLives2);
-
         lblTime2.setName("time"); // NOI18N
         panelHighScore.add(lblTime2);
 
@@ -136,9 +122,6 @@ public class LeaderboardsClassicUI  extends javax.swing.JFrame {
 
         lblName3.setName("name"); // NOI18N
         panelHighScore.add(lblName3);
-
-        lblLives3.setName("lives"); // NOI18N
-        panelHighScore.add(lblLives3);
 
         lblTime3.setName("time"); // NOI18N
         panelHighScore.add(lblTime3);
@@ -162,21 +145,14 @@ public class LeaderboardsClassicUI  extends javax.swing.JFrame {
         });
         getContentPane().add(btnExit);
         btnExit.setBounds(400, 20, 60, 50);
-        getContentPane().add(lblBg);
-        lblBg.setBounds(-50, -380, 670, 1110);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        setVisible(false);
-        dispose();
-    }//GEN-LAST:event_btnExitActionPerformed
-    
     private void displayHighScore(){
         try 
         {    
-            for(HighScoreClassic h : leaderboardsList) {
+            for(HighScoreSpeedRun h : leaderboardsList) {
                 System.out.println(h.getName());
         }
         } catch (Exception ex) {
@@ -184,41 +160,11 @@ public class LeaderboardsClassicUI  extends javax.swing.JFrame {
         }
     }
     
-    private void displayColumn(String name) {
-        if(leaderboardsList.size() == EMPTY) 
-            return;
-        
-        else if(leaderboardsList.size() >= MAX_LEADERBOARD_SIZE){
-            int index = 0;            
-                while(index < MAX_LEADERBOARD_SIZE) {
-                    for(Component component : panelHighScore.getComponents()){
-                    var lbl = (JLabel) component;
-                    if(lbl.getName() != null)
-                        if(lbl.getName().equals(name)){
-                            switch(name){
-                                case "score": 
-                                    lbl.setText(leaderboardsList.get(index).getScore() + "");
-                                    lbl.setName("done");
-                                    break;
-                                case "name":
-                                    lbl.setText(leaderboardsList.get(index).getName());
-                                    lbl.setName("done");
-                                    break;
-                                case "lives":
-                                  lbl.setText(leaderboardsList.get(index).getLivesLeft() + "");
-                                  lbl.setName("done");
-                                  break;  
-                                case "time":
-                                    lbl.setText(leaderboardsList.get(index).getTime() + "");
-                                    lbl.setName("done");
-                                    break;
-                            }
-                            index++;
-                        }
-                }
-            }
-        }
-    }
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_btnExitActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
@@ -227,13 +173,8 @@ public class LeaderboardsClassicUI  extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel lblBg;
-    private javax.swing.JLabel lblLives1;
-    private javax.swing.JLabel lblLives2;
-    private javax.swing.JLabel lblLives3;
     private javax.swing.JLabel lblName1;
     private javax.swing.JLabel lblName2;
     private javax.swing.JLabel lblName3;
