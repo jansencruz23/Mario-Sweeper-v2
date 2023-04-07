@@ -14,19 +14,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 
-public class HighScoreClassicUI  extends javax.swing.JFrame {
+public class LeaderboardsClassicUI  extends javax.swing.JFrame {
     final int MAX_LEADERBOARD_SIZE = 3;
     final int EMPTY = 0;
     private ArrayList<HighScoreClassic> leaderboardsList;
     BaseLeaderboards leaderboards;
     
-    public HighScoreClassicUI(BaseLeaderboards leaderboards) {
+    public LeaderboardsClassicUI(BaseLeaderboards leaderboards) {
         this.leaderboards = leaderboards;
         this.leaderboardsList = (ArrayList<HighScoreClassic>) (ArrayList<?>) leaderboards.getLeaderboards();
         
         initComponents();
         setLocationRelativeTo(null);
-        displayHighScore();
+       //displayHighScore();
         
         displayColumn("score");
         displayColumn("name");
@@ -180,7 +180,7 @@ public class HighScoreClassicUI  extends javax.swing.JFrame {
                 System.out.println(h.getName());
         }
         } catch (Exception ex) {
-            Logger.getLogger(HighScoreClassicUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LeaderboardsClassicUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

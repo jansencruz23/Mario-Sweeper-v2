@@ -1,8 +1,10 @@
 package mariosweeper;
 
 import components.Components;
+import highscore.leaderboards.LeaderboardsClassic;
 import highscore.leaderboards.LeaderboardsSpeedrun;
 import highscore.serializables.HighScoreSpeedRun;
+import highscore.ui.LeaderboardsSpeedrunUI;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -20,6 +22,7 @@ public class SpeedRunUI extends BaseGame {
         initComponents();
         setLocationRelativeTo(null);
         displayHighScore();
+        readLeaderboards();
     }
 
     @SuppressWarnings("unchecked")
@@ -70,7 +73,7 @@ public class SpeedRunUI extends BaseGame {
         btn1.setName("1"); // NOI18N
         btn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btn1ActionPerformed(evt);
             }
         });
         panelButtons.add(btn1);
@@ -83,7 +86,7 @@ public class SpeedRunUI extends BaseGame {
         btn2.setName("2"); // NOI18N
         btn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btn2ActionPerformed(evt);
             }
         });
         panelButtons.add(btn2);
@@ -96,7 +99,7 @@ public class SpeedRunUI extends BaseGame {
         btn3.setName("3"); // NOI18N
         btn3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btn3ActionPerformed(evt);
             }
         });
         panelButtons.add(btn3);
@@ -109,7 +112,7 @@ public class SpeedRunUI extends BaseGame {
         btn4.setName("4"); // NOI18N
         btn4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btn4ActionPerformed(evt);
             }
         });
         panelButtons.add(btn4);
@@ -122,7 +125,7 @@ public class SpeedRunUI extends BaseGame {
         btn5.setName("5"); // NOI18N
         btn5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btn5ActionPerformed(evt);
             }
         });
         panelButtons.add(btn5);
@@ -135,7 +138,7 @@ public class SpeedRunUI extends BaseGame {
         btn6.setName("6"); // NOI18N
         btn6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btn6ActionPerformed(evt);
             }
         });
         panelButtons.add(btn6);
@@ -148,7 +151,7 @@ public class SpeedRunUI extends BaseGame {
         btn7.setName("7"); // NOI18N
         btn7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btn7ActionPerformed(evt);
             }
         });
         panelButtons.add(btn7);
@@ -161,7 +164,7 @@ public class SpeedRunUI extends BaseGame {
         btn8.setName("8"); // NOI18N
         btn8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btn8ActionPerformed(evt);
             }
         });
         panelButtons.add(btn8);
@@ -174,7 +177,7 @@ public class SpeedRunUI extends BaseGame {
         btn9.setName("9"); // NOI18N
         btn9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btn9ActionPerformed(evt);
             }
         });
         panelButtons.add(btn9);
@@ -187,7 +190,7 @@ public class SpeedRunUI extends BaseGame {
         btn10.setName("10"); // NOI18N
         btn10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btn10ActionPerformed(evt);
             }
         });
         panelButtons.add(btn10);
@@ -200,7 +203,7 @@ public class SpeedRunUI extends BaseGame {
         btn11.setName("11"); // NOI18N
         btn11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btn11ActionPerformed(evt);
             }
         });
         panelButtons.add(btn11);
@@ -213,7 +216,7 @@ public class SpeedRunUI extends BaseGame {
         btn12.setName("12"); // NOI18N
         btn12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btn12ActionPerformed(evt);
             }
         });
         panelButtons.add(btn12);
@@ -226,7 +229,7 @@ public class SpeedRunUI extends BaseGame {
         btn13.setName("13"); // NOI18N
         btn13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btn13ActionPerformed(evt);
             }
         });
         panelButtons.add(btn13);
@@ -239,7 +242,7 @@ public class SpeedRunUI extends BaseGame {
         btn14.setName("14"); // NOI18N
         btn14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btn14ActionPerformed(evt);
             }
         });
         panelButtons.add(btn14);
@@ -252,7 +255,7 @@ public class SpeedRunUI extends BaseGame {
         btn15.setName("15"); // NOI18N
         btn15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btn15ActionPerformed(evt);
             }
         });
         panelButtons.add(btn15);
@@ -265,7 +268,7 @@ public class SpeedRunUI extends BaseGame {
         btn16.setName("16"); // NOI18N
         btn16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btn16ActionPerformed(evt);
             }
         });
         panelButtons.add(btn16);
@@ -294,6 +297,11 @@ public class SpeedRunUI extends BaseGame {
         txtScore.setBounds(140, 50, 70, 40);
 
         btnHighScore.setText("jButton1");
+        btnHighScore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHighScoreActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnHighScore);
         btnHighScore.setBounds(140, 20, 110, 23);
 
@@ -333,38 +341,7 @@ public class SpeedRunUI extends BaseGame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        components = new Components(panelButtons, txtScore, btnStart, lblTimer, btnHighScore, grid);
-        passComponents(components);
-        startGame();
-        assignPos();
-        print2d();
-        startTimer(lblTimer);
-    }//GEN-LAST:event_btnStartActionPerformed
-
-    private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
-        JButton btn = (JButton) evt.getSource();
-        switch(btn.getName()){
-            case "1": clicked(0,0,btn1); break;
-            case "2": clicked(0,1,btn2); break;
-            case "3": clicked(0,2,btn3); break;
-            case "4": clicked(0,3,btn4); break;
-            case "5": clicked(1,0,btn5); break;
-            case "6": clicked(1,1,btn6); break;
-            case "7": clicked(1,2,btn7); break;
-            case "8": clicked(1,3,btn8); break;
-            case "9": clicked(2,0,btn9); break;
-            case "10": clicked(2,1,btn10); break;
-            case "11": clicked(2,2,btn11); break;
-            case "12": clicked(2,3,btn12); break;
-            case "13": clicked(3,0,btn13); break;
-            case "14": clicked(3,1,btn14); break;
-            case "15": clicked(3,2,btn15); break;
-            case "16": clicked(3,3,btn16); break;
-        }
-    }//GEN-LAST:event_btnActionPerformed
-
-    public void clicked(int x, int y, JButton btn){
+        public void clicked(int x, int y, JButton btn){
         if(!isGoodShroom(x, y, btn)){
             formatDialog();
             checkHighScore();
@@ -450,6 +427,95 @@ public class SpeedRunUI extends BaseGame {
         setScore(getScore() + 2);
         txtScore.setText(getScore() + "");
     }
+    
+    private void readLeaderboards(){
+        try{
+            leaderboard = (LeaderboardsSpeedrun) leaderboard
+                    .readHighScore(leaderboard.FILE_NAME)
+                    .readObject();
+        }
+        catch(Exception ex){
+            System.out.println("asd");
+        }  
+    }
+    
+    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+        components = new Components(panelButtons, txtScore, btnStart, lblTimer, btnHighScore, grid);
+        passComponents(components);
+        startGame();
+        assignPos();
+        print2d();
+        startTimer(lblTimer);
+    }//GEN-LAST:event_btnStartActionPerformed
+
+    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
+        clicked(0, 0, btn1); 
+    }//GEN-LAST:event_btn1ActionPerformed
+
+    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+        clicked(0, 1, btn2); 
+    }//GEN-LAST:event_btn2ActionPerformed
+
+    private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
+        clicked(0, 2, btn3); 
+    }//GEN-LAST:event_btn3ActionPerformed
+
+    private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
+        clicked(0, 3, btn4); 
+    }//GEN-LAST:event_btn4ActionPerformed
+
+    private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
+        clicked(1, 0, btn5); 
+    }//GEN-LAST:event_btn5ActionPerformed
+
+    private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
+        clicked(1, 1, btn6); 
+    }//GEN-LAST:event_btn6ActionPerformed
+
+    private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
+        clicked(1, 2, btn7); 
+    }//GEN-LAST:event_btn7ActionPerformed
+
+    private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
+        clicked(1, 3, btn8); 
+    }//GEN-LAST:event_btn8ActionPerformed
+
+    private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
+        clicked(2, 0, btn9); 
+    }//GEN-LAST:event_btn9ActionPerformed
+
+    private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn10ActionPerformed
+        clicked(2, 1, btn10); 
+    }//GEN-LAST:event_btn10ActionPerformed
+
+    private void btn11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn11ActionPerformed
+        clicked(2, 2, btn11); 
+    }//GEN-LAST:event_btn11ActionPerformed
+
+    private void btn12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn12ActionPerformed
+        clicked(2, 3, btn12); 
+    }//GEN-LAST:event_btn12ActionPerformed
+
+    private void btn13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn13ActionPerformed
+        clicked(3, 0, btn13); 
+    }//GEN-LAST:event_btn13ActionPerformed
+
+    private void btn14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn14ActionPerformed
+        clicked(3, 1, btn14); 
+    }//GEN-LAST:event_btn14ActionPerformed
+
+    private void btn15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn15ActionPerformed
+        clicked(3, 2, btn15); 
+    }//GEN-LAST:event_btn15ActionPerformed
+
+    private void btn16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn16ActionPerformed
+        clicked(3, 3, btn16); 
+    }//GEN-LAST:event_btn16ActionPerformed
+
+    private void btnHighScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHighScoreActionPerformed
+        readLeaderboards();
+        new LeaderboardsSpeedrunUI(leaderboard).setVisible(true);
+    }//GEN-LAST:event_btnHighScoreActionPerformed
     
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
