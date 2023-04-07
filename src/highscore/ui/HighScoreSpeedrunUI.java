@@ -1,12 +1,12 @@
 package highscore.ui;
 
 import highscore.serializables.HighScoreSpeedRun;
-import highscore.leaderboards.Leaderboards;
+import highscore.leaderboards.BaseLeaderboards;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 
 public class HighScoreSpeedrunUI extends JFrame{
-    Leaderboards leaderboards;
+    BaseLeaderboards leaderboards;
     private ArrayList<HighScoreSpeedRun> leaderboardsList;
     
 

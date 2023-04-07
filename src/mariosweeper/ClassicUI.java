@@ -5,7 +5,8 @@ import components.Components;
 import contracts.IHighScore;
 import highscore.serializables.HighScoreClassic;
 import highscore.ui.HighScoreClassicUI;
-import highscore.leaderboards.Leaderboards;
+import highscore.leaderboards.BaseLeaderboards;
+import highscore.leaderboards.LeaderboardsClassic;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -28,7 +29,7 @@ public class ClassicUI extends BaseGame {
     //ArrayList<IHighScore> leaderboards;
     
     Components components;
-    Leaderboards leaderboard = new Leaderboards();
+    LeaderboardsClassic leaderboard = new LeaderboardsClassic();
     //Leaderboards leaderboards;
     HighScoreClassic highScoreClassic = new HighScoreClassic();
     HighScoreClassic highScore;
@@ -552,7 +553,7 @@ public class ClassicUI extends BaseGame {
     private void displayHighScore(){
         try
         {            
-            highScore = (HighScoreClassic) highScoreClassic.readHighScore().readObject();
+            highScore = (HighScoreClassic) highScoreClassic.readHighScore(highScore.FILE_NAME).readObject();
             
             var hsScore = highScore.getScore();
             var hsName = highScore.getName();
@@ -569,7 +570,9 @@ public class ClassicUI extends BaseGame {
     
     private void readLeaderboards(){
         try{
-            leaderboard = (Leaderboards) leaderboard.readHighScore().readObject();
+            leaderboard = (LeaderboardsClassic) leaderboard
+                    .readHighScore(leaderboard.FILE_NAME)
+                    .readObject();
         }
         catch(Exception ex){
             System.out.println("asd");
@@ -600,12 +603,12 @@ public class ClassicUI extends BaseGame {
         highScore.setTime(time);
         highScore.setLivesLeft(lives.size());
         
-        highScore.saveHighScore(this.highScore);
+        highScore.saveHighScore(this.highScore, highScore.FILE_NAME);
     }
     
     private void saveLeaderboards(){
         leaderboard.addToLeaderboards(this.highScore);
-        leaderboard.saveLeaderboards(leaderboard);
+        leaderboard.saveLeaderboards(leaderboard, leaderboard.FILE_NAME);
     }
         
     public static void main(String args[]) {

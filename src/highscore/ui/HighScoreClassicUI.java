@@ -1,6 +1,6 @@
 package highscore.ui;
 
-import highscore.leaderboards.Leaderboards;
+import highscore.leaderboards.BaseLeaderboards;
 import highscore.serializables.HighScoreClassic;
 import components.CirclePanel;
 import java.awt.Color;
@@ -18,14 +18,16 @@ public class HighScoreClassicUI  extends javax.swing.JFrame {
     final int MAX_LEADERBOARD_SIZE = 3;
     final int EMPTY = 0;
     private ArrayList<HighScoreClassic> leaderboardsList;
-    Leaderboards leaderboards;
+    BaseLeaderboards leaderboards;
     
-    public HighScoreClassicUI(Leaderboards leaderboards) {
+    public HighScoreClassicUI(BaseLeaderboards leaderboards) {
         this.leaderboards = leaderboards;
         this.leaderboardsList = leaderboards.getLeaderboards();
+        
         initComponents();
         setLocationRelativeTo(null);
         displayHighScore();
+        
         displayColumn("score");
         displayColumn("name");
         displayColumn("lives");

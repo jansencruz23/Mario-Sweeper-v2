@@ -1,22 +1,16 @@
 package highscore.serializables;
 
 import contracts.IHighScore;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 
-public class HighScoreSpeedRun implements IHighScore, Serializable  {
+public class HighScoreSpeedRun extends BaseHighScore {
     private final String FILE_NAME = "highscoreSpeedRun.bin";
     
     private String name;
     private int score;
     private double time;
     private int level;
-    private ArrayList<HighScoreSpeedRun> leaderboards = new ArrayList<HighScoreSpeedRun>();
+    //private ArrayList<HighScoreSpeedRun> leaderboards = new ArrayList<HighScoreSpeedRun>();
     
     public String getName(){
         return name;
@@ -34,10 +28,6 @@ public class HighScoreSpeedRun implements IHighScore, Serializable  {
         return level;
     }
     
-    public ArrayList<HighScoreSpeedRun> getLeaderboards(){
-        return leaderboards;
-    }
-    
     public void setName(String name){
         this.name = name;
     }
@@ -53,27 +43,5 @@ public class HighScoreSpeedRun implements IHighScore, Serializable  {
     public void setLevel(int level){
         this.level = level;
     }
-    
-    public void addToLeaderboard(HighScoreSpeedRun highscore){
-        leaderboards.add(highscore);
-    }
-    
-    @Override
-    public void saveHighScore(IHighScore highScore) {   
-        try{
-            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(FILE_NAME));
-            output.writeObject(highScore);
-            output.close();
-            System.out.println("file saved");
-        }
-        catch(Exception ex){
-            System.out.println("File cannot be saved");
-        }
-    }
-    
-    @Override
-    public ObjectInputStream readHighScore() throws IOException {
-        ObjectInputStream input = new ObjectInputStream(new FileInputStream(FILE_NAME));
-        return input;
-    }
+        
 }

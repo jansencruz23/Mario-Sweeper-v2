@@ -4,6 +4,6 @@ import java.io.ObjectInputStream;
 
 public interface IHighScore {
     
-    void saveHighScore(IHighScore highScore);
-    ObjectInputStream readHighScore() throws IOException;
+    void saveHighScore(IHighScore highScore, String fileName);
+    ObjectInputStream readHighScore(String fileName) throws IOException;
 }
