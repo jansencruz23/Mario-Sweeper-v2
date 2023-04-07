@@ -20,7 +20,8 @@ import javax.swing.border.EmptyBorder;
  * @author Jansen C. Cruz
  */
 
-public class ClassicUI extends BaseGame {      
+public class ClassicUI extends BaseGame {
+    private String name;
     int[][] grid = new int[4][4];
     int[] goalScores = { 28, 95, 225 };
     String[] difficulty = { "Easy", "Medium", "Hard" };
@@ -31,7 +32,8 @@ public class ClassicUI extends BaseGame {
     HighScoreClassic highScore = new HighScoreClassic();
     JPanel roundPanel;
     
-    public ClassicUI() {
+    public ClassicUI(String name) {
+        this.name = name;
         initComponents();
         setLocationRelativeTo(null);
         setHearts();
@@ -369,34 +371,7 @@ public class ClassicUI extends BaseGame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-       
-    public static void main(String args[]) {
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClassicUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClassicUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClassicUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClassicUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        java.awt.EventQueue.invokeLater(() -> {
-            new ClassicUI().setVisible(true);
-        });
-    }  
-    
+           
     private void setHearts() {             
         final int NUMBER_OF_HEARTS = 3;
         
@@ -581,7 +556,7 @@ public class ClassicUI extends BaseGame {
     }
     
     private void saveHighScore(int score, double time){
-        var name = JOptionPane.showInputDialog(null, "You beat the highscore! Enter your name", "0", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "You beat the highscore!", "You Are The #1!", JOptionPane.INFORMATION_MESSAGE, mario);
         
         highScore.setName(name);
         highScore.setScore(score);

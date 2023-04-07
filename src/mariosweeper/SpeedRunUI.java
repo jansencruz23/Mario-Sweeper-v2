@@ -1,7 +1,6 @@
 package mariosweeper;
 
 import components.Components;
-import leaderboards.serializables.LeaderboardsClassic;
 import leaderboards.serializables.LeaderboardsSpeedrun;
 import highscore.serializables.HighScoreSpeedRun;
 import leaderboard.ui.LeaderboardsSpeedrunUI;
@@ -10,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 public class SpeedRunUI extends BaseGame {
+    private String name;
     LeaderboardsSpeedrun leaderboard = new LeaderboardsSpeedrun();
     HighScoreSpeedRun highScore = new HighScoreSpeedRun();
     Components components;
@@ -18,7 +18,8 @@ public class SpeedRunUI extends BaseGame {
     final int GOAL_SCORE = 28;
     int score;
     
-    public SpeedRunUI() {
+    public SpeedRunUI(String name) {
+        this.name = name;
         initComponents();
         setLocationRelativeTo(null);
         displayHighScore();
@@ -408,7 +409,7 @@ public class SpeedRunUI extends BaseGame {
     }
     
      private void saveHighScore(int score, double time){
-        var name = JOptionPane.showInputDialog(null, "You beat the highscore! Enter your name", "0", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "You beat the highscore!", "You Are The #1!", JOptionPane.INFORMATION_MESSAGE, mario);
         
         highScore.setName(name);
         highScore.setScore(score);
@@ -519,36 +520,7 @@ public class SpeedRunUI extends BaseGame {
         readLeaderboards();
         new LeaderboardsSpeedrunUI(leaderboard).setVisible(true);
     }//GEN-LAST:event_btnHighScoreActionPerformed
-    
-    public static void main(String args[]) {
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SpeedRunUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SpeedRunUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SpeedRunUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SpeedRunUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SpeedRunUI().setVisible(true);
-            }
-        });
-    }
-
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn1;
     private javax.swing.JButton btn10;
