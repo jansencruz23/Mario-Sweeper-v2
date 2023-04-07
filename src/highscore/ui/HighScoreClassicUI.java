@@ -22,7 +22,7 @@ public class HighScoreClassicUI  extends javax.swing.JFrame {
     
     public HighScoreClassicUI(BaseLeaderboards leaderboards) {
         this.leaderboards = leaderboards;
-        this.leaderboardsList = leaderboards.getLeaderboards();
+        this.leaderboardsList = (ArrayList<HighScoreClassic>) (ArrayList<?>) leaderboards.getLeaderboards();
         
         initComponents();
         setLocationRelativeTo(null);
@@ -174,8 +174,9 @@ public class HighScoreClassicUI  extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
     
     private void displayHighScore(){
-        try {
-            for(HighScoreClassic h : leaderboards.getLeaderboards()) {
+        try 
+        {    
+            for(HighScoreClassic h : leaderboardsList) {
                 System.out.println(h.getName());
         }
         } catch (Exception ex) {

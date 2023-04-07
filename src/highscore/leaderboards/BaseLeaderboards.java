@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 public class BaseLeaderboards implements Serializable, ILeaderboards {
     //final String FILE_NAME = "leaderboards.bin";
-    ArrayList<HighScoreClassic> leaderboards = new ArrayList<HighScoreClassic>();
+    ArrayList<IHighScore> leaderboards = new ArrayList<IHighScore>();
     
-    public ArrayList<HighScoreClassic> getLeaderboards() {
+    public ArrayList<IHighScore> getLeaderboards() {
         return leaderboards;
     }
     
@@ -26,7 +26,6 @@ public class BaseLeaderboards implements Serializable, ILeaderboards {
     
     public void saveLeaderboards(ILeaderboards leaderboards, String fileName) {
         try{
-            
             ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileName));
             output.writeObject(leaderboards);
             output.close();

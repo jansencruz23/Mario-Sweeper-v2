@@ -4,7 +4,7 @@ import contracts.IHighScore;
 import java.io.Serializable;
 
 public class HighScoreSpeedRun extends BaseHighScore {
-    private final String FILE_NAME = "highscoreSpeedRun.bin";
+    public final String FILE_NAME = "highscoreSpeedRun.bin";
     
     private String name;
     private int score;

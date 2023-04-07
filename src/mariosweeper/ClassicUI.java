@@ -31,8 +31,8 @@ public class ClassicUI extends BaseGame {
     Components components;
     LeaderboardsClassic leaderboard = new LeaderboardsClassic();
     //Leaderboards leaderboards;
-    HighScoreClassic highScoreClassic = new HighScoreClassic();
-    HighScoreClassic highScore;
+    HighScoreClassic highScore = new HighScoreClassic();
+    //HighScoreClassic highScore;
     JPanel roundPanel;
     
     public ClassicUI() {
@@ -553,7 +553,7 @@ public class ClassicUI extends BaseGame {
     private void displayHighScore(){
         try
         {            
-            highScore = (HighScoreClassic) highScoreClassic.readHighScore(highScore.FILE_NAME).readObject();
+            highScore = (HighScoreClassic) highScore.readHighScore(highScore.FILE_NAME).readObject();
             
             var hsScore = highScore.getScore();
             var hsName = highScore.getName();

@@ -1,12 +1,17 @@
 package mariosweeper;
 
 import components.Components;
+import highscore.leaderboards.LeaderboardsSpeedrun;
+import highscore.serializables.HighScoreSpeedRun;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 public class SpeedRunUI extends BaseGame {
+    LeaderboardsSpeedrun leaderboard = new LeaderboardsSpeedrun();
+    HighScoreSpeedRun highScore = new HighScoreSpeedRun();
     Components components;
+    
     int[][] grid = new int[4][4];
     final int GOAL_SCORE = 28;
     int score;
@@ -14,6 +19,7 @@ public class SpeedRunUI extends BaseGame {
     public SpeedRunUI() {
         initComponents();
         setLocationRelativeTo(null);
+        displayHighScore();
     }
 
     @SuppressWarnings("unchecked")
@@ -359,8 +365,13 @@ public class SpeedRunUI extends BaseGame {
     }//GEN-LAST:event_btnActionPerformed
 
     public void clicked(int x, int y, JButton btn){
-        if(!isGoodShroom(x, y, btn))
+        if(!isGoodShroom(x, y, btn)){
+            formatDialog();
+            checkHighScore();
             showGameOver();
+            displayHighScore();
+            return;
+        }
         
         addScore();
         checkWinner();
@@ -377,9 +388,58 @@ public class SpeedRunUI extends BaseGame {
             formatDialog();
             displayWinner();
             //playSound(fileWin);
-            //checkHighScore();
+            checkHighScore();
             resetValues();
         }
+    }
+    
+    private void displayHighScore(){
+        try
+        {            
+            highScore = (HighScoreSpeedRun) highScore.readHighScore(highScore.FILE_NAME).readObject();
+            
+            var hsScore = highScore.getScore();
+            var hsName = highScore.getName();
+            var hsTime = highScore.getTime();
+            
+            System.out.println(hsScore);
+            btnHighScore.setText(hsScore + "");
+        }
+        catch(Exception ex)
+        {
+            highScore = null;
+        }
+    }
+    
+    private void checkHighScore(){
+        var time = Double.parseDouble(lblTimer.getText());
+        var score = getScore();
+        
+        if(highScore == null)
+            highScore = new HighScoreSpeedRun();
+        else if(score < highScore.getScore()) 
+            return;
+        else if(score == highScore.getScore() && time > highScore.getTime())
+            return;
+        
+        saveHighScore(score, time);
+        saveLeaderboards();
+        //leaderboards.addToLeaderboards(this.highScore);
+    }
+    
+     private void saveHighScore(int score, double time){
+        var name = JOptionPane.showInputDialog(null, "You beat the highscore! Enter your name", "0", JOptionPane.INFORMATION_MESSAGE);
+        
+        highScore.setName(name);
+        highScore.setScore(score);
+        highScore.setTime(time);
+        
+        highScore.saveHighScore(this.highScore, highScore.FILE_NAME);
+    }
+    
+    private void saveLeaderboards(){
+        leaderboard.addToLeaderboards(this.highScore);
+        leaderboard.saveLeaderboards(leaderboard, leaderboard.FILE_NAME);
     }
     
     private void displayWinner(){
@@ -388,7 +448,7 @@ public class SpeedRunUI extends BaseGame {
     
     private void addScore(){
         setScore(getScore() + 2);
-        txtScore.setText(getScore() +"");
+        txtScore.setText(getScore() + "");
     }
     
     public static void main(String args[]) {
