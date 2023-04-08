@@ -1,9 +1,14 @@
 package mariosweeper;
 
+import components.CirclePanel;
 import java.awt.Color;
+import java.awt.GridLayout;
+import javax.swing.JOptionPane;
+import javax.swing.border.EmptyBorder;
 
 public class MainMenuUI extends javax.swing.JFrame {
-
+    private boolean isNameEdited;
+        
     public MainMenuUI() {
         initComponents();
         setLocationRelativeTo(null);
@@ -15,10 +20,13 @@ public class MainMenuUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblName = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        btnSpeedrun = new javax.swing.JButton();
+        txtName = new javax.swing.JTextField();
+        jPanel2 =  new CirclePanel(new GridLayout(1,2,5,5), 50, new Color(30, 30, 30, 150));
+        jPanel2.setBounds(530, 25, 230, 57);
+        jPanel2.setOpaque(false);
+        jPanel2.setBorder(new EmptyBorder(25,25,25,25));
         btnClassic = new javax.swing.JButton();
+        btnSpeedrun = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblBg = new javax.swing.JLabel();
 
@@ -31,68 +39,59 @@ public class MainMenuUI extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 600));
         jPanel1.setLayout(null);
 
-        lblName.setForeground(new java.awt.Color(102, 102, 102));
-        lblName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        lblName.setText("Enter your name!");
-        lblName.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtName.setFont(new java.awt.Font("Super Mario 256", 0, 16)); // NOI18N
+        txtName.setForeground(new java.awt.Color(102, 102, 102));
+        txtName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtName.setText("Enter your name!");
+        txtName.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                lblNameFocusGained(evt);
+                txtNameFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                lblNameFocusLost(evt);
+                txtNameFocusLost(evt);
             }
         });
-        jPanel1.add(lblName);
-        lblName.setBounds(440, 200, 320, 40);
+        jPanel1.add(txtName);
+        txtName.setBounds(440, 170, 320, 40);
 
-        btnSpeedrun.setText("SPEEDRUN");
-        btnSpeedrun.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSpeedrun.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSpeedrunActionPerformed(evt);
-            }
-        });
+        jPanel2.setLayout(new java.awt.GridLayout(2, 0, 10, 10));
 
+        btnClassic.setBackground(new java.awt.Color(254, 201, 14));
+        btnClassic.setFont(new java.awt.Font("Super Mario 256", 0, 33)); // NOI18N
+        btnClassic.setForeground(new java.awt.Color(51, 51, 51));
         btnClassic.setText("CLASSIC");
+        btnClassic.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 153, 0), 3, true));
         btnClassic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnClassic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClassicActionPerformed(evt);
             }
         });
+        jPanel2.add(btnClassic);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnClassic, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSpeedrun, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(btnClassic, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(btnSpeedrun, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
+        btnSpeedrun.setBackground(new java.awt.Color(243, 93, 143));
+        btnSpeedrun.setFont(new java.awt.Font("Super Mario 256", 0, 33)); // NOI18N
+        btnSpeedrun.setForeground(new java.awt.Color(51, 51, 51));
+        btnSpeedrun.setText("SPEEDRUN");
+        btnSpeedrun.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 0, 0), 3, true));
+        btnSpeedrun.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSpeedrun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSpeedrunActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnSpeedrun);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(440, 250, 320, 200);
+        jPanel2.setBounds(440, 220, 320, 200);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("MARIO SWEEPERS");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(440, 70, 320, 60);
 
-        lblBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menu.jpg"))); // NOI18N
-        lblBg.setMinimumSize(new java.awt.Dimension(900, 500));
-        lblBg.setPreferredSize(new java.awt.Dimension(900, 500));
+        lblBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menu2.jpg"))); // NOI18N
         jPanel1.add(lblBg);
         lblBg.setBounds(0, 0, 900, 500);
 
@@ -100,28 +99,59 @@ public class MainMenuUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+        
+    private boolean isNameValid(){
+        if(!isNameEdited || txtName.getText().isBlank())            
+            return false;
+        
+        return true;
+    }
+    
+    private void showInvalidNameDialog(){
+        JOptionPane.showMessageDialog(null, "Name must not be empty", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
     private void btnClassicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClassicActionPerformed
-        var name = lblName.getText();
+        if(!isNameValid())
+        {
+            showInvalidNameDialog();
+            return;
+        }
+        
+        var name = txtName.getText();
         new ClassicUI(name).setVisible(true);
         exitApp();
     }//GEN-LAST:event_btnClassicActionPerformed
 
     private void btnSpeedrunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSpeedrunActionPerformed
-        var name = lblName.getText();
+        if(!isNameValid())
+        {
+            showInvalidNameDialog();
+            return;
+        }
+        
+        var name = txtName.getText();
         new SpeedRunUI(name).setVisible(true);
         exitApp();
     }//GEN-LAST:event_btnSpeedrunActionPerformed
 
-    private void lblNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblNameFocusGained
-        lblName.setText("");
-        lblName.setForeground(Color.BLACK);
-    }//GEN-LAST:event_lblNameFocusGained
+    private void txtNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNameFocusGained
+        if(isNameEdited)
+            return;
+        
+        isNameEdited = true;
+        txtName.setText("");
+        txtName.setForeground(new Color(30,30,30));
+    }//GEN-LAST:event_txtNameFocusGained
 
-    private void lblNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblNameFocusLost
-        lblName.setText("Enter your name!");
-        lblName.setForeground(Color.GRAY);
-    }//GEN-LAST:event_lblNameFocusLost
+    private void txtNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNameFocusLost
+        if(txtName.getText().isBlank())
+        {
+            txtName.setText("Enter your name!");
+            txtName.setForeground(Color.GRAY);
+            isNameEdited = false;
+        }
+    }//GEN-LAST:event_txtNameFocusLost
 
     private void exitApp(){
         this.setVisible(false);
@@ -164,6 +194,6 @@ public class MainMenuUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblBg;
-    private javax.swing.JTextField lblName;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }
