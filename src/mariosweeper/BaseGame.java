@@ -1,12 +1,16 @@
 package mariosweeper;
 
 import components.Components;
+import fonts.Fonts;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
+import java.io.File;
 import static java.lang.Thread.sleep;
 import java.util.ArrayList;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,6 +28,14 @@ public class BaseGame extends JFrame {
     ImageIcon badShroom = setButtonIcon("/img/bad.png");
     ImageIcon mario = setButtonIcon("/img/mario.png");
     ImageIcon gameOver = new ImageIcon(getClass().getResource("/img/gover.png"));
+    ImageIcon winIcon = new ImageIcon(getClass().getResource("/img/win.png"));
+    
+    File fileGO = new File("D:\\User\\Jansen\\Self Study\\2023 - 04 - APRIL\\Java AWT\\MarioSweeper\\src\\img\\bad.wav");
+    File fileOK = new File("D:\\User\\Jansen\\Self Study\\2023 - 04 - APRIL\\Java AWT\\MarioSweeper\\src\\img\\good.wav");
+    File fileBG = new File("D:\\User\\Jansen\\Self Study\\2023 - 04 - APRIL\\Java AWT\\MarioSweeper\\src\\img\\bg.wav");
+    File fileWin = new File("D:\\User\\Jansen\\Self Study\\2023 - 04 - APRIL\\Java AWT\\MarioSweeper\\src\\img\\win.wav");
+    File fileStart = new File("D:\\User\\Jansen\\Self Study\\2023 - 04 - APRIL\\Java AWT\\MarioSweeper\\src\\img\\start.wav");
+    File fileBad = new File("D:\\User\\Jansen\\Self Study\\2023 - 04 - APRIL\\Java AWT\\MarioSweeper\\src\\img\\bump.wav");
     
     private int[][] grid;
     private ArrayList<JLabel> lives;
@@ -32,6 +44,11 @@ public class BaseGame extends JFrame {
     private int score = 2;
     
     Components components;
+    Clip clip;
+    
+    public BaseGame(){
+        playSoundLoop(fileBG);
+    }
     
     public int getScore(){
         return score;
@@ -143,7 +160,7 @@ public class BaseGame extends JFrame {
         time = Double.parseDouble(components.getLblTimer().getText());
         
         state = false;
-        //playSound(fileGO);
+        playSound(fileGO);
         //checkHighScore();
         
         int option = showGameOverDialog();
@@ -247,11 +264,32 @@ public class BaseGame extends JFrame {
         return JOptionPane.showConfirmDialog(null, message, title, optionType, messageType, icon);
     }
     
-    public void formatDialog(){
-        Font font = new Font("Chiller",
-                Font.BOLD,
-                30);
-        
-        UIManager.put("OptionPane.messageFont", font);
+    public void formatDialog(){      
+        UIManager.put("OptionPane.messageFont", Fonts.getPixelFont(14f));
+    }
+    
+    public void playSound(File file) {
+        try
+        {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(file));
+            clip.start();
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    
+    public void playSoundLoop(File file) {
+        try
+        {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(file));
+            clip.start();
+            clip.loop(10);
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 }

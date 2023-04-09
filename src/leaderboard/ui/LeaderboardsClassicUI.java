@@ -2,6 +2,7 @@ package leaderboard.ui;
 
 import leaderboards.serializables.BaseLeaderboardsSerializable;
 import components.CirclePanel;
+import fonts.Fonts;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ComponentAdapter;
@@ -34,7 +35,7 @@ public class LeaderboardsClassicUI  extends BaseLeaderboards {
                 setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 70, 70));
             }
         });
-        panelHighScore = new CirclePanel(new GridLayout(4,5,5,5), 50, new Color(30, 30, 30, 100));
+        panelHighScore = new CirclePanel(new GridLayout(4,5,5,5), 50, new Color(30, 30, 30, 150));
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -60,10 +61,10 @@ public class LeaderboardsClassicUI  extends BaseLeaderboards {
         lblBg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(500, 440));
+        setMinimumSize(new java.awt.Dimension(565, 440));
         setUndecorated(true);
         setResizable(false);
-        setSize(new java.awt.Dimension(500, 500));
+        setSize(new java.awt.Dimension(565, 500));
         getContentPane().setLayout(null);
 
         panelHighScore.setBackground(new java.awt.Color(0, 0, 0));
@@ -71,73 +72,136 @@ public class LeaderboardsClassicUI  extends BaseLeaderboards {
         panelHighScore.setOpaque(false);
         panelHighScore.setLayout(new java.awt.GridLayout(4, 5, 5, 5));
 
+        jLabel2.setFont(Fonts.getPixelFont(12f)
+        );
+        jLabel2.setForeground(new java.awt.Color(255, 255, 51));
         jLabel2.setText("Player #");
         panelHighScore.add(jLabel2);
 
+        jLabel1.setFont(Fonts.getPixelFont(12f)
+        );
+        jLabel1.setForeground(new java.awt.Color(255, 255, 51));
         jLabel1.setText("Score");
         panelHighScore.add(jLabel1);
 
+        jLabel13.setFont(Fonts.getPixelFont(12f)
+        );
+        jLabel13.setForeground(new java.awt.Color(255, 255, 51));
         jLabel13.setText("Name");
         panelHighScore.add(jLabel13);
 
+        jLabel5.setFont(Fonts.getPixelFont(12f)
+        );
+        jLabel5.setForeground(new java.awt.Color(255, 255, 51));
         jLabel5.setText("Lives Left");
         panelHighScore.add(jLabel5);
 
+        jLabel9.setFont(Fonts.getPixelFont(12f)
+        );
+        jLabel9.setForeground(new java.awt.Color(255, 255, 51));
         jLabel9.setText("Time");
         panelHighScore.add(jLabel9);
 
+        jLabel8.setFont(Fonts.getPixelFont(14f)
+        );
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("1.");
         panelHighScore.add(jLabel8);
 
+        lblScore1.setFont(Fonts.getPixelFont(20f)
+        );
+        lblScore1.setForeground(new java.awt.Color(255, 102, 0));
         lblScore1.setName("score"); // NOI18N
         panelHighScore.add(lblScore1);
 
+        lblName1.setFont(Fonts.getPixelFont(14f)
+        );
+        lblName1.setForeground(new java.awt.Color(255, 255, 255));
         lblName1.setName("name"); // NOI18N
         panelHighScore.add(lblName1);
 
+        lblLives1.setFont(Fonts.getPixelFont(14f)
+        );
+        lblLives1.setForeground(new java.awt.Color(255, 255, 255));
         lblLives1.setName("lives"); // NOI18N
         panelHighScore.add(lblLives1);
 
+        lblTime1.setFont(Fonts.getPixelFont(14f)
+        );
+        lblTime1.setForeground(new java.awt.Color(255, 255, 255));
         lblTime1.setName("time"); // NOI18N
         panelHighScore.add(lblTime1);
 
+        jLabel20.setFont(Fonts.getPixelFont(14f)
+        );
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("2.");
         panelHighScore.add(jLabel20);
 
+        lblScore2.setFont(Fonts.getPixelFont(20f)
+        );
+        lblScore2.setForeground(new java.awt.Color(255, 102, 0));
         lblScore2.setName("score"); // NOI18N
         panelHighScore.add(lblScore2);
 
+        lblName2.setFont(Fonts.getPixelFont(14f)
+        );
+        lblName2.setForeground(new java.awt.Color(255, 255, 255));
         lblName2.setName("name"); // NOI18N
         panelHighScore.add(lblName2);
 
+        lblLives2.setFont(Fonts.getPixelFont(14f)
+        );
+        lblLives2.setForeground(new java.awt.Color(255, 255, 255));
         lblLives2.setName("lives"); // NOI18N
         panelHighScore.add(lblLives2);
 
+        lblTime2.setFont(Fonts.getPixelFont(14f)
+        );
+        lblTime2.setForeground(new java.awt.Color(255, 255, 255));
         lblTime2.setName("time"); // NOI18N
         panelHighScore.add(lblTime2);
 
+        jLabel10.setFont(Fonts.getPixelFont(14f)
+        );
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("3.");
         panelHighScore.add(jLabel10);
 
+        lblScore3.setFont(Fonts.getPixelFont(20f)
+        );
+        lblScore3.setForeground(new java.awt.Color(255, 102, 0));
         lblScore3.setName("score"); // NOI18N
         panelHighScore.add(lblScore3);
 
+        lblName3.setFont(Fonts.getPixelFont(14f)
+        );
+        lblName3.setForeground(new java.awt.Color(255, 255, 255));
         lblName3.setName("name"); // NOI18N
         panelHighScore.add(lblName3);
 
+        lblLives3.setFont(Fonts.getPixelFont(14f)
+        );
+        lblLives3.setForeground(new java.awt.Color(255, 255, 255));
         lblLives3.setName("lives"); // NOI18N
         panelHighScore.add(lblLives3);
 
+        lblTime3.setFont(Fonts.getPixelFont(14f)
+        );
+        lblTime3.setForeground(new java.awt.Color(255, 255, 255));
         lblTime3.setName("time"); // NOI18N
         panelHighScore.add(lblTime3);
 
         getContentPane().add(panelHighScore);
-        panelHighScore.setBounds(40, 130, 410, 260);
+        panelHighScore.setBounds(40, 130, 480, 260);
 
+        lblTitle.setFont(Fonts.getPixelFont(30f)
+        );
+        lblTitle.setForeground(new java.awt.Color(204, 0, 0));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("SUPER PLAYERS");
+        lblTitle.setText("SUPER PLAYERS!");
         getContentPane().add(lblTitle);
-        lblTitle.setBounds(50, 70, 390, 48);
+        lblTitle.setBounds(50, 70, 460, 48);
 
         btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/exit.png"))); // NOI18N
         btnExit.setBorderPainted(false);
@@ -149,9 +213,12 @@ public class LeaderboardsClassicUI  extends BaseLeaderboards {
             }
         });
         getContentPane().add(btnExit);
-        btnExit.setBounds(400, 20, 60, 50);
+        btnExit.setBounds(470, 20, 60, 50);
+
+        lblBg.setBackground(new java.awt.Color(255, 255, 0));
+        lblBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ld.jpg"))); // NOI18N
         getContentPane().add(lblBg);
-        lblBg.setBounds(-50, -380, 670, 1110);
+        lblBg.setBounds(0, -350, 670, 1110);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

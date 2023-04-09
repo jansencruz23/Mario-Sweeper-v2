@@ -1,6 +1,7 @@
 package mariosweeper;
 
 import components.Components;
+import fonts.Fonts;
 import leaderboards.serializables.LeaderboardsSpeedrun;
 import highscore.serializables.HighScoreSpeedRun;
 import leaderboard.ui.LeaderboardsSpeedrunUI;
@@ -16,7 +17,6 @@ public class SpeedRunUI extends BaseGame {
     
     int[][] grid = new int[4][4];
     final int GOAL_SCORE = 28;
-    int score;
     
     public SpeedRunUI(String name) {
         this.name = name;
@@ -55,6 +55,7 @@ public class SpeedRunUI extends BaseGame {
         jLabel4 = new javax.swing.JLabel();
         lblTimer = new javax.swing.JLabel();
         lblScore = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         lblBg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -287,34 +288,44 @@ public class SpeedRunUI extends BaseGame {
             }
         });
         getContentPane().add(btnStart);
-        btnStart.setBounds(370, 20, 80, 60);
+        btnStart.setBounds(380, 20, 80, 60);
 
-        btnHighScore.setText("jButton1");
+        btnHighScore.setBackground(new java.awt.Color(255, 102, 0));
+        btnHighScore.setFont(Fonts.getPixelFont(20f));
+        btnHighScore.setForeground(new java.awt.Color(102, 0, 0));
+        btnHighScore.setText("n/a");
+        btnHighScore.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         btnHighScore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHighScoreActionPerformed(evt);
             }
         });
         getContentPane().add(btnHighScore);
-        btnHighScore.setBounds(140, 20, 110, 23);
+        btnHighScore.setBounds(60, 40, 120, 40);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setFont(Fonts.getPixelFont(15f)
+        );
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("High score:");
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("High score");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(40, 20, 80, 20);
+        jLabel3.setBounds(40, 10, 170, 16);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setFont(Fonts.getPixelFont(15f)
+        );
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Your score:");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Score");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(40, 60, 80, 20);
+        jLabel1.setBounds(240, 10, 80, 16);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setFont(Fonts.getPixelFont(15f)
+        );
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Time:");
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Time");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(560, 30, 50, 20);
+        jLabel2.setBounds(500, 10, 80, 20);
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Developed by: Jansen C. Cruz");
@@ -322,13 +333,26 @@ public class SpeedRunUI extends BaseGame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(620, 460, 170, 16);
 
-        lblTimer.setText("0");
+        lblTimer.setFont(Fonts.getPixelFont(20f));
+        lblTimer.setForeground(new java.awt.Color(255, 255, 255));
+        lblTimer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTimer.setText("0.0");
         getContentPane().add(lblTimer);
-        lblTimer.setBounds(640, 30, 100, 16);
+        lblTimer.setBounds(490, 40, 100, 40);
 
+        lblScore.setFont(Fonts.getPixelFont(20f));
+        lblScore.setForeground(new java.awt.Color(255, 255, 255));
+        lblScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblScore.setText("2");
         getContentPane().add(lblScore);
-        lblScore.setBounds(160, 70, 100, 16);
+        lblScore.setBounds(230, 40, 100, 40);
+
+        jLabel5.setFont(Fonts.getPixelFont(8f));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("click to view leaderbords");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(40, 80, 160, 16);
 
         lblBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bg.jpg"))); // NOI18N
         lblBg.setText("jLabel1");
@@ -339,7 +363,8 @@ public class SpeedRunUI extends BaseGame {
     }// </editor-fold>//GEN-END:initComponents
 
         public void clicked(int x, int y, JButton btn){
-        if(!isGoodShroom(x, y, btn)){
+        if(!isGoodShroom(x, y, btn)) {
+            playSound(fileGO);
             formatDialog();
             checkHighScore();
             showGameOver();
@@ -347,17 +372,20 @@ public class SpeedRunUI extends BaseGame {
             return;
         }
         
+        playSound(fileOK);
         addScore();
         checkWinner();
     }
     
     private void checkWinner(){
-         score = Integer.parseInt(lblScore.getText());
+        final int ADDITIONAL_POINTS = 2;
+        var currentScore = getScore();
         
-        if(score == GOAL_SCORE)
+        if(currentScore == GOAL_SCORE)
         {
-            score += 2;
-            lblScore.setText(score + "");
+            setScore(currentScore + ADDITIONAL_POINTS);
+            lblScore.setText(getScore() + "");
+            System.out.println(currentScore);
             
             stopTimer();
             formatDialog();
@@ -399,6 +427,7 @@ public class SpeedRunUI extends BaseGame {
         else if(score == highScore.getScore() && time > highScore.getTime())
             return;
         
+        System.out.println("asd" + score);
         saveHighScore(score, time);
         saveLeaderboards();
         //leaderboards.addToLeaderboards(this.highScore);
@@ -420,7 +449,7 @@ public class SpeedRunUI extends BaseGame {
     }
     
     private void displayWinner(){
-        JOptionPane.showMessageDialog(null, "Congratulations! Your score is: " + score);
+        JOptionPane.showMessageDialog(null, "You saved Princess Peach! Score: " + getScore(), "Winner!", JOptionPane.INFORMATION_MESSAGE, winIcon);
     }
     
     private void addScore(){
@@ -445,6 +474,7 @@ public class SpeedRunUI extends BaseGame {
         startGame();
         assignPos();
         print2d();
+        playSound(fileStart);
         startTimer(lblTimer);
     }//GEN-LAST:event_btnStartActionPerformed
 
@@ -540,6 +570,7 @@ public class SpeedRunUI extends BaseGame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lblBg;
     private javax.swing.JLabel lblScore;
     private javax.swing.JLabel lblTimer;

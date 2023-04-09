@@ -4,16 +4,22 @@ import components.CirclePanel;
 import fonts.Fonts;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.io.File;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 public class MainMenuUI extends javax.swing.JFrame {
     private boolean isNameEdited;
+    Clip clip;
+    File fileBg = new File("D:\\User\\Jansen\\Self Study\\2023 - 04 - APRIL\\Java AWT\\MarioSweeper\\src\\img\\menubg.wav");
     
     public MainMenuUI() {
-        
         initComponents();
         setLocationRelativeTo(null);
+        playSoundLoop(fileBg);
         btnClassic.requestFocus(false);
     }
 
@@ -36,6 +42,7 @@ public class MainMenuUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(850, 538));
         setPreferredSize(new java.awt.Dimension(850, 500));
+        setResizable(false);
         setSize(new java.awt.Dimension(900, 500));
 
         jPanel1.setMinimumSize(new java.awt.Dimension(900, 600));
@@ -89,12 +96,15 @@ public class MainMenuUI extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(440, 220, 320, 200);
 
+        jLabel1.setForeground(new java.awt.Color(229, 37, 33));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("SWEEPERS");
         jLabel1.setFont(Fonts.getPixelFont(40f));
         jPanel1.add(jLabel1);
         jLabel1.setBounds(440, 80, 320, 60);
 
+        jLabel2.setBackground(new java.awt.Color(51, 102, 255));
+        jLabel2.setForeground(new java.awt.Color(4, 156, 216));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("MARIO");
         jLabel2.setFont(Fonts.getPixelFont(40f));
@@ -110,6 +120,19 @@ public class MainMenuUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
         
+    public void playSoundLoop(File file) {
+        try
+        {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(file));
+            clip.start();
+            clip.loop(10);
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    
     private boolean isNameValid(){
         if(!isNameEdited || txtName.getText().isBlank())            
             return false;
@@ -118,6 +141,7 @@ public class MainMenuUI extends javax.swing.JFrame {
     }
     
     private void showInvalidNameDialog(){
+        UIManager.put("OptionPane.messageFont", Fonts.getPixelFont(12f));
         JOptionPane.showMessageDialog(null, "Name must not be empty", "Error", JOptionPane.ERROR_MESSAGE);
     }
     
@@ -166,6 +190,7 @@ public class MainMenuUI extends javax.swing.JFrame {
     private void exitApp(){
         this.setVisible(false);
         this.dispose();
+        clip.stop();
     }
     
     public static void main(String args[]) {

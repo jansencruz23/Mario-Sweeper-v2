@@ -47,7 +47,7 @@ public class ClassicUI extends BaseGame {
     private void initComponents() {
 
         roundPanel = new CirclePanel(new GridLayout(1,2,5,5), 50, new Color(30, 30, 30, 100));
-        roundPanel.setBounds(500, 15, 230, 57);
+        roundPanel.setBounds(500, 22, 230, 57);
         roundPanel.setOpaque(false);
         roundPanel.setBorder(new EmptyBorder(15,10,10,12));
         panelButtons = new CirclePanel(25);
@@ -78,6 +78,7 @@ public class ClassicUI extends BaseGame {
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         lblTimer = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         lblBg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -321,8 +322,8 @@ public class ClassicUI extends BaseGame {
         btnHighScore.setFont(Fonts.getPixelFont(20f)
         );
         btnHighScore.setForeground(new java.awt.Color(102, 0, 0));
-        btnHighScore.setText("HIGHSCORES");
-        btnHighScore.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        btnHighScore.setText("n/a");
+        btnHighScore.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(48, 48, 48), 3, true));
         btnHighScore.setFocusPainted(false);
         btnHighScore.setFocusable(false);
         btnHighScore.addActionListener(new java.awt.event.ActionListener() {
@@ -395,6 +396,11 @@ public class ClassicUI extends BaseGame {
         getContentPane().add(lblTimer);
         lblTimer.setBounds(560, 30, 120, 40);
 
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/settings.png"))); // NOI18N
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(690, 20, 120, 60);
+
         lblBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bg.jpg"))); // NOI18N
         lblBg.setText("jLabel1");
         getContentPane().add(lblBg);
@@ -420,9 +426,15 @@ public class ClassicUI extends BaseGame {
     
     public void clicked(int x, int y, JButton btn){
         if(isGoodShroom(x, y, btn))
+        {
+            playSound(fileOK);
             addScore();
+        }
         else
+        {
+            playSound(fileBad);
             removeHeart();
+        }
         
         checkWinner();          
     }
@@ -447,6 +459,7 @@ public class ClassicUI extends BaseGame {
     private void checkWinner(){
         final int EASY_LEVEL = 0;
         final int MAX_LEVEL = 2;
+        final int ADDITIONAL_POINTS = 2;
         
         var currentScore = getScore();
         var currentLevel = getCurrentLevel();
@@ -454,21 +467,21 @@ public class ClassicUI extends BaseGame {
         if(currentScore == goalScores[currentLevel])
         {
             if(currentScore == goalScores[EASY_LEVEL])
-                setScore(currentScore + 2);
+                setScore(currentScore + ADDITIONAL_POINTS);
             
-            lblScore.setText(currentScore + "");
+            lblScore.setText(getScore() + "");
 
             if (currentLevel == MAX_LEVEL)
             {
                 checkHighScore();
-                displayHighScore();
+                playSound(fileWin);
                 displayWinner();
+                displayHighScore();
                 return;
             }
             
             formatDialog();
             goToNextLevel();
-            //playSound(fileWin);
             resetButtons();
         }
     }
@@ -513,7 +526,7 @@ public class ClassicUI extends BaseGame {
     
     private void displayWinner() {
         stopTimer();
-        JOptionPane.showMessageDialog(null, "Congratulations! You win!");
+        JOptionPane.showMessageDialog(null, "You saved Princess Peach <3", "Winner!", JOptionPane.INFORMATION_MESSAGE, winIcon);
         askPlayAgain();
     }
     
@@ -583,7 +596,6 @@ public class ClassicUI extends BaseGame {
         
         saveHighScore(score, time);
         saveLeaderboards();
-        //leaderboards.addToLeaderboards(this.highScore);
     }
     
     private void saveHighScore(int score, double time){
@@ -609,6 +621,7 @@ public class ClassicUI extends BaseGame {
         startGame();
         assignPos();
         print2d();
+        playSound(fileStart);
         startTimer(lblTimer);
     }//GEN-LAST:event_btnStartActionPerformed
 
@@ -705,6 +718,7 @@ public class ClassicUI extends BaseGame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lblBg;
     private javax.swing.JLabel lblLevel;
     private javax.swing.JLabel lblScore;
