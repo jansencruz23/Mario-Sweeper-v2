@@ -185,7 +185,7 @@ public class BaseGame extends JFrame {
         final int MINIMUM_SCORE = 2;
         
         score = MINIMUM_SCORE;
-        components.getTxtScore().setText(score + "");
+        components.getLblScore().setText(score + "");
     }
     
     private void resetSeconds() {

@@ -4,20 +4,18 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class Components {
     
-    JTextField txtScore;
     JPanel panel;
     JButton btnStart, btnHighScore;
-    JLabel lblTimer, lblLevel;
+    JLabel lblTimer, lblLevel, lblScore;
     int[][] grid;
     ArrayList<JLabel> lives;
     
-    public Components (JPanel panel, JTextField txtScore, JButton btnStart, JLabel lblTimer, 
+    public Components (JPanel panel, JLabel lblScore, JButton btnStart, JLabel lblTimer, 
             JButton btnHighScore, int[][] grid, JLabel lblLevel, ArrayList<JLabel> lives) {
-    this.txtScore = txtScore;
+    this.lblScore = lblScore;
     this.panel = panel;
     this.btnStart = btnStart;
     this.lblTimer = lblTimer;
@@ -27,19 +25,18 @@ public class Components {
     this.lives = lives;
     }
     
-    public Components (JPanel panel, JTextField txtScore, JButton btnStart, JLabel lblTimer, 
+    public Components (JPanel panel, JLabel lblScore, JButton btnStart, JLabel lblTimer, 
             JButton btnHighScore, int[][] grid) {
-    this.txtScore = txtScore;
+    this.lblScore = lblScore;
     this.panel = panel;
     this.btnStart = btnStart;
     this.lblTimer = lblTimer;
     this.btnHighScore = btnHighScore;
     this.grid = grid;
-    this.lblLevel = lblLevel;
     }
 
-    public JTextField getTxtScore() {
-        return txtScore;
+    public JLabel getLblScore() {
+        return lblScore;
     }
 
     public JButton getTxtHScore() {

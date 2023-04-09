@@ -48,13 +48,13 @@ public class SpeedRunUI extends BaseGame {
         btn15 = new javax.swing.JButton();
         btn16 = new javax.swing.JButton();
         btnStart = new javax.swing.JButton();
-        txtScore = new javax.swing.JTextField();
         btnHighScore = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lblTimer = new javax.swing.JLabel();
+        lblScore = new javax.swing.JLabel();
         lblBg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -289,14 +289,6 @@ public class SpeedRunUI extends BaseGame {
         getContentPane().add(btnStart);
         btnStart.setBounds(370, 20, 80, 60);
 
-        txtScore.setEditable(false);
-        txtScore.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtScore.setForeground(new java.awt.Color(153, 51, 0));
-        txtScore.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtScore.setText("2");
-        getContentPane().add(txtScore);
-        txtScore.setBounds(140, 50, 70, 40);
-
         btnHighScore.setText("jButton1");
         btnHighScore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -334,6 +326,10 @@ public class SpeedRunUI extends BaseGame {
         getContentPane().add(lblTimer);
         lblTimer.setBounds(640, 30, 100, 16);
 
+        lblScore.setText("2");
+        getContentPane().add(lblScore);
+        lblScore.setBounds(160, 70, 100, 16);
+
         lblBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bg.jpg"))); // NOI18N
         lblBg.setText("jLabel1");
         getContentPane().add(lblBg);
@@ -356,12 +352,12 @@ public class SpeedRunUI extends BaseGame {
     }
     
     private void checkWinner(){
-         score = Integer.parseInt(txtScore.getText());
+         score = Integer.parseInt(lblScore.getText());
         
         if(score == GOAL_SCORE)
         {
             score += 2;
-            txtScore.setText(score + "");
+            lblScore.setText(score + "");
             
             stopTimer();
             formatDialog();
@@ -429,7 +425,7 @@ public class SpeedRunUI extends BaseGame {
     
     private void addScore(){
         setScore(getScore() + 2);
-        txtScore.setText(getScore() + "");
+        lblScore.setText(getScore() + "");
     }
     
     private void readLeaderboards(){
@@ -444,7 +440,7 @@ public class SpeedRunUI extends BaseGame {
     }
     
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        components = new Components(panelButtons, txtScore, btnStart, lblTimer, btnHighScore, grid);
+        components = new Components(panelButtons, lblScore, btnStart, lblTimer, btnHighScore, grid);
         passComponents(components);
         startGame();
         assignPos();
@@ -545,8 +541,8 @@ public class SpeedRunUI extends BaseGame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lblBg;
+    private javax.swing.JLabel lblScore;
     private javax.swing.JLabel lblTimer;
     private javax.swing.JPanel panelButtons;
-    private javax.swing.JTextField txtScore;
     // End of variables declaration//GEN-END:variables
 }
