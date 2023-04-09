@@ -47,7 +47,7 @@ public class ClassicUI extends BaseGame {
     private void initComponents() {
 
         roundPanel = new CirclePanel(new GridLayout(1,2,5,5), 50, new Color(30, 30, 30, 100));
-        roundPanel.setBounds(530, 25, 230, 57);
+        roundPanel.setBounds(500, 15, 230, 57);
         roundPanel.setOpaque(false);
         roundPanel.setBorder(new EmptyBorder(15,10,10,12));
         panelButtons = new CirclePanel(25);
@@ -75,6 +75,8 @@ public class ClassicUI extends BaseGame {
         jLabel3 = new javax.swing.JLabel();
         lblScore = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         lblTimer = new javax.swing.JLabel();
         lblBg = new javax.swing.JLabel();
 
@@ -313,42 +315,74 @@ public class ClassicUI extends BaseGame {
             }
         });
         getContentPane().add(btnStart);
-        btnStart.setBounds(370, 20, 80, 60);
+        btnStart.setBounds(380, 20, 80, 60);
 
+        btnHighScore.setBackground(new java.awt.Color(255, 102, 0));
+        btnHighScore.setFont(Fonts.getPixelFont(20f)
+        );
+        btnHighScore.setForeground(new java.awt.Color(102, 0, 0));
         btnHighScore.setText("HIGHSCORES");
+        btnHighScore.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        btnHighScore.setFocusPainted(false);
+        btnHighScore.setFocusable(false);
         btnHighScore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHighScoreActionPerformed(evt);
             }
         });
         getContentPane().add(btnHighScore);
-        btnHighScore.setBounds(140, 13, 120, 30);
+        btnHighScore.setBounds(40, 40, 120, 40);
 
+        lblLevel.setFont(Fonts.getPixelFont(20f)
+        );
+        lblLevel.setForeground(new java.awt.Color(255, 255, 255));
+        lblLevel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLevel.setText("Easy");
         getContentPane().add(lblLevel);
-        lblLevel.setBounds(280, 20, 80, 16);
+        lblLevel.setBounds(260, 40, 120, 40);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setFont(Fonts.getPixelFont(15f));
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Your score:");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Level");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(40, 60, 80, 20);
+        jLabel1.setBounds(270, 0, 100, 40);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setFont(Fonts.getPixelFont(15f)
+        );
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("High score:");
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("High score");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(40, 20, 80, 20);
+        jLabel3.setBounds(30, 10, 140, 20);
 
+        lblScore.setFont(Fonts.getPixelFont(20f)
+        );
+        lblScore.setForeground(new java.awt.Color(255, 255, 255));
+        lblScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblScore.setText("2");
         getContentPane().add(lblScore);
-        lblScore.setBounds(160, 60, 100, 16);
+        lblScore.setBounds(170, 40, 100, 40);
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Developed by: Jansen C. Cruz");
         jLabel4.setOpaque(true);
         getContentPane().add(jLabel4);
         jLabel4.setBounds(620, 460, 170, 16);
+
+        jLabel2.setFont(Fonts.getPixelFont(15f));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Score");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(180, 0, 80, 40);
+
+        jLabel5.setFont(Fonts.getPixelFont(8f));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("click to view leaderbords");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(20, 80, 160, 16);
 
         lblTimer.setFont(Fonts.getPixelFont(32f));
         lblTimer.setForeground(new java.awt.Color(255, 255, 255));
@@ -359,7 +393,7 @@ public class ClassicUI extends BaseGame {
         lblTimer.setIconTextGap(0);
         lblTimer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         getContentPane().add(lblTimer);
-        lblTimer.setBounds(560, 30, 110, 50);
+        lblTimer.setBounds(560, 30, 120, 40);
 
         lblBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bg.jpg"))); // NOI18N
         lblBg.setText("jLabel1");
@@ -667,8 +701,10 @@ public class ClassicUI extends BaseGame {
     private javax.swing.JButton btnHighScore;
     private javax.swing.JButton btnStart;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lblBg;
     private javax.swing.JLabel lblLevel;
     private javax.swing.JLabel lblScore;
