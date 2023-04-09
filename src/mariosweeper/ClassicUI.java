@@ -2,6 +2,7 @@ package mariosweeper;
 
 import components.CirclePanel;
 import components.Components;
+import fonts.Fonts;
 import highscore.serializables.HighScoreClassic;
 import leaderboard.ui.LeaderboardsClassicUI;
 import leaderboards.serializables.LeaderboardsClassic;
@@ -333,7 +334,7 @@ public class ClassicUI extends BaseGame {
 
         lblLevel.setText("Easy");
         getContentPane().add(lblLevel);
-        lblLevel.setBounds(40, 180, 80, 16);
+        lblLevel.setBounds(280, 20, 80, 16);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -353,7 +354,7 @@ public class ClassicUI extends BaseGame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(620, 460, 170, 16);
 
-        lblTimer.setFont(new java.awt.Font("Super Mario 256", 1, 30)); // NOI18N
+        lblTimer.setFont(Fonts.getPixelFont(32f));
         lblTimer.setForeground(new java.awt.Color(255, 255, 255));
         lblTimer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTimer.setText("0.0");

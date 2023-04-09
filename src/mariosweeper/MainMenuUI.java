@@ -1,6 +1,7 @@
 package mariosweeper;
 
 import components.CirclePanel;
+import fonts.Fonts;
 import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JOptionPane;
@@ -8,8 +9,9 @@ import javax.swing.border.EmptyBorder;
 
 public class MainMenuUI extends javax.swing.JFrame {
     private boolean isNameEdited;
-        
+    
     public MainMenuUI() {
+        
         initComponents();
         setLocationRelativeTo(null);
         btnClassic.requestFocus(false);
@@ -28,6 +30,7 @@ public class MainMenuUI extends javax.swing.JFrame {
         btnClassic = new javax.swing.JButton();
         btnSpeedrun = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         lblBg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -39,7 +42,7 @@ public class MainMenuUI extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 600));
         jPanel1.setLayout(null);
 
-        txtName.setFont(new java.awt.Font("Super Mario 256", 0, 16)); // NOI18N
+        txtName.setFont(Fonts.getPixelFont(15f));
         txtName.setForeground(new java.awt.Color(102, 102, 102));
         txtName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtName.setText("Enter your name!");
@@ -58,10 +61,10 @@ public class MainMenuUI extends javax.swing.JFrame {
         jPanel2.setLayout(new java.awt.GridLayout(2, 0, 10, 10));
 
         btnClassic.setBackground(new java.awt.Color(254, 201, 14));
-        btnClassic.setFont(new java.awt.Font("Super Mario 256", 0, 33)); // NOI18N
+        btnClassic.setFont(Fonts.getPixelFont(30f));
         btnClassic.setForeground(new java.awt.Color(51, 51, 51));
         btnClassic.setText("CLASSIC");
-        btnClassic.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 153, 0), 3, true));
+        btnClassic.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(48, 48, 48), 3, true));
         btnClassic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnClassic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,10 +74,10 @@ public class MainMenuUI extends javax.swing.JFrame {
         jPanel2.add(btnClassic);
 
         btnSpeedrun.setBackground(new java.awt.Color(243, 93, 143));
-        btnSpeedrun.setFont(new java.awt.Font("Super Mario 256", 0, 33)); // NOI18N
+        btnSpeedrun.setFont(Fonts.getPixelFont(30f));
         btnSpeedrun.setForeground(new java.awt.Color(51, 51, 51));
         btnSpeedrun.setText("SPEEDRUN");
-        btnSpeedrun.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 0, 0), 3, true));
+        btnSpeedrun.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(48, 48, 48), 3, true));
         btnSpeedrun.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSpeedrun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,9 +90,16 @@ public class MainMenuUI extends javax.swing.JFrame {
         jPanel2.setBounds(440, 220, 320, 200);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("MARIO SWEEPERS");
+        jLabel1.setText("SWEEPERS");
+        jLabel1.setFont(Fonts.getPixelFont(40f));
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(440, 70, 320, 60);
+        jLabel1.setBounds(440, 80, 320, 60);
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("MARIO");
+        jLabel2.setFont(Fonts.getPixelFont(40f));
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(440, 40, 320, 60);
 
         lblBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menu2.jpg"))); // NOI18N
         jPanel1.add(lblBg);
@@ -191,6 +201,7 @@ public class MainMenuUI extends javax.swing.JFrame {
     private javax.swing.JButton btnClassic;
     private javax.swing.JButton btnSpeedrun;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblBg;
