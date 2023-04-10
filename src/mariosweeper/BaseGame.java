@@ -49,8 +49,8 @@ public class BaseGame extends JFrame {
     Clip clip;
     Clip clipBackground;
     
-    public BaseGame(){
-        //playSoundLoop(fileBG);
+    public File getFileBG(){
+        return fileBG;
     }
     
     public int getScore(){
@@ -279,7 +279,7 @@ public class BaseGame extends JFrame {
             clip.start();
         }
         catch(Exception ex){
-            ex.printStackTrace();
+            System.out.println("ero");
         }
     }
     
@@ -299,7 +299,7 @@ public class BaseGame extends JFrame {
     public void stopSound(){
         clip.stop();
     }
-    
+        
     public void stopSoundBackground(){
         clipBackground.stop();
     }
