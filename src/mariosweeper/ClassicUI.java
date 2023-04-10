@@ -37,6 +37,7 @@ public class ClassicUI extends BaseGame {
         this.name = name;
         initComponents();
         setLocationRelativeTo(null);
+        playSoundLoop(fileBG);
         setHearts();
         displayHighScore();
         readLeaderboards();
@@ -78,7 +79,7 @@ public class ClassicUI extends BaseGame {
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         lblTimer = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblSettings = new javax.swing.JLabel();
         lblBg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -307,7 +308,7 @@ public class ClassicUI extends BaseGame {
         panelLives.setOpaque(false);
         panelLives.setLayout(new java.awt.GridLayout(1, 3, 3, 0));
         getContentPane().add(panelLives);
-        panelLives.setBounds(690, 30, 120, 40);
+        panelLives.setBounds(710, 30, 120, 40);
 
         btnStart.setIcon(setButtonIcon("/img/mario.png"));
         btnStart.addActionListener(new java.awt.event.ActionListener() {
@@ -321,11 +322,13 @@ public class ClassicUI extends BaseGame {
         btnHighScore.setBackground(new java.awt.Color(255, 102, 0));
         btnHighScore.setFont(Fonts.getPixelFont(20f)
         );
-        btnHighScore.setForeground(new java.awt.Color(102, 0, 0));
+        btnHighScore.setForeground(new java.awt.Color(255, 255, 255));
         btnHighScore.setText("n/a");
-        btnHighScore.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(48, 48, 48), 3, true));
+        btnHighScore.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
         btnHighScore.setFocusPainted(false);
         btnHighScore.setFocusable(false);
+        btnHighScore.setMinimumSize(new java.awt.Dimension(12, 22));
+        btnHighScore.setPreferredSize(new java.awt.Dimension(12, 22));
         btnHighScore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHighScoreActionPerformed(evt);
@@ -362,6 +365,7 @@ public class ClassicUI extends BaseGame {
         lblScore.setForeground(new java.awt.Color(255, 255, 255));
         lblScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblScore.setText("2");
+        lblScore.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         getContentPane().add(lblScore);
         lblScore.setBounds(170, 40, 100, 40);
 
@@ -396,10 +400,16 @@ public class ClassicUI extends BaseGame {
         getContentPane().add(lblTimer);
         lblTimer.setBounds(560, 30, 120, 40);
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/settings.png"))); // NOI18N
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(690, 20, 120, 60);
+        lblSettings.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSettings.setIcon(setButtonIcon("/img/settings.png", 45,45));
+        lblSettings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblSettings.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSettingsMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblSettings);
+        lblSettings.setBounds(720, 22, 120, 60);
 
         lblBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bg.jpg"))); // NOI18N
         lblBg.setText("jLabel1");
@@ -694,6 +704,10 @@ public class ClassicUI extends BaseGame {
         clicked(3, 3, btn16);
     }//GEN-LAST:event_btn16ActionPerformed
 
+    private void lblSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSettingsMouseClicked
+        openSettings(name);
+    }//GEN-LAST:event_lblSettingsMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn1;
     private javax.swing.JButton btn10;
@@ -718,10 +732,10 @@ public class ClassicUI extends BaseGame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lblBg;
     private javax.swing.JLabel lblLevel;
     private javax.swing.JLabel lblScore;
+    private javax.swing.JLabel lblSettings;
     private javax.swing.JLabel lblTimer;
     private javax.swing.JPanel panelButtons;
     private javax.swing.JPanel panelLives;

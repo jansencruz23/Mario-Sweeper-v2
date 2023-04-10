@@ -22,6 +22,7 @@ public class SpeedRunUI extends BaseGame {
         this.name = name;
         initComponents();
         setLocationRelativeTo(null);
+        playSoundLoop(fileBG);
         displayHighScore();
         readLeaderboards();
     }
@@ -56,6 +57,7 @@ public class SpeedRunUI extends BaseGame {
         lblTimer = new javax.swing.JLabel();
         lblScore = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        lblSettings = new javax.swing.JLabel();
         lblBg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -292,9 +294,9 @@ public class SpeedRunUI extends BaseGame {
 
         btnHighScore.setBackground(new java.awt.Color(255, 102, 0));
         btnHighScore.setFont(Fonts.getPixelFont(20f));
-        btnHighScore.setForeground(new java.awt.Color(102, 0, 0));
+        btnHighScore.setForeground(new java.awt.Color(255, 255, 255));
         btnHighScore.setText("n/a");
-        btnHighScore.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        btnHighScore.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
         btnHighScore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHighScoreActionPerformed(evt);
@@ -344,6 +346,7 @@ public class SpeedRunUI extends BaseGame {
         lblScore.setForeground(new java.awt.Color(255, 255, 255));
         lblScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblScore.setText("2");
+        lblScore.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
         getContentPane().add(lblScore);
         lblScore.setBounds(230, 40, 100, 40);
 
@@ -353,6 +356,17 @@ public class SpeedRunUI extends BaseGame {
         jLabel5.setText("click to view leaderbords");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(40, 80, 160, 16);
+
+        lblSettings.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSettings.setIcon(setButtonIcon("/img/settings.png", 45,45));
+        lblSettings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblSettings.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSettingsMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblSettings);
+        lblSettings.setBounds(720, 22, 120, 60);
 
         lblBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bg.jpg"))); // NOI18N
         lblBg.setText("jLabel1");
@@ -364,7 +378,7 @@ public class SpeedRunUI extends BaseGame {
 
         public void clicked(int x, int y, JButton btn){
         if(!isGoodShroom(x, y, btn)) {
-            playSound(fileGO);
+            playSound(fileBad);
             formatDialog();
             checkHighScore();
             showGameOver();
@@ -546,6 +560,10 @@ public class SpeedRunUI extends BaseGame {
         readLeaderboards();
         new LeaderboardsSpeedrunUI(leaderboard).setVisible(true);
     }//GEN-LAST:event_btnHighScoreActionPerformed
+
+    private void lblSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSettingsMouseClicked
+        openSettings(name);
+    }//GEN-LAST:event_lblSettingsMouseClicked
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn1;
@@ -573,6 +591,7 @@ public class SpeedRunUI extends BaseGame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lblBg;
     private javax.swing.JLabel lblScore;
+    private javax.swing.JLabel lblSettings;
     private javax.swing.JLabel lblTimer;
     private javax.swing.JPanel panelButtons;
     // End of variables declaration//GEN-END:variables

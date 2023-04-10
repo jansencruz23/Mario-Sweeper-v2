@@ -13,11 +13,13 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicButtonUI;
+import settings.Settings;
 
 public class BaseGame extends JFrame {
     final int GOOD_SHROOM = 0;
@@ -45,9 +47,10 @@ public class BaseGame extends JFrame {
     
     Components components;
     Clip clip;
+    Clip clipBackground;
     
     public BaseGame(){
-        playSoundLoop(fileBG);
+        //playSoundLoop(fileBG);
     }
     
     public int getScore(){
@@ -283,13 +286,25 @@ public class BaseGame extends JFrame {
     public void playSoundLoop(File file) {
         try
         {
-            clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(file));
-            clip.start();
-            clip.loop(10);
+            clipBackground = AudioSystem.getClip();
+            clipBackground.open(AudioSystem.getAudioInputStream(file));
+            clipBackground.start();
+            clipBackground.loop(10);
         }
         catch(Exception ex){
             ex.printStackTrace();
         }
+    }
+    
+    public void stopSound(){
+        clip.stop();
+    }
+    
+    public void stopSoundBackground(){
+        clipBackground.stop();
+    }
+    
+    public void openSettings(String name) {
+        new Settings(this, name).setVisible(true);
     }
 }
