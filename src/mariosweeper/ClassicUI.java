@@ -24,9 +24,10 @@ import javax.swing.border.EmptyBorder;
 public class ClassicUI extends BaseGame {
     private String name;
     int[][] grid = new int[4][4];
-    int[] goalScores = { 28, 95, 225 };
+    int[] goalScores = { 28, 85, 175 };
     String[] difficulty = { "Easy", "Medium", "Hard" };
     ArrayList<JLabel> lives = new ArrayList<JLabel>();
+    int badShrooms = 3;
     
     Components components;
     LeaderboardsClassic leaderboard = new LeaderboardsClassic();
@@ -463,6 +464,7 @@ public class ClassicUI extends BaseGame {
             panelLives.removeAll();
             setHearts();
             displayHighScore();
+            badShrooms = DEFAULT_BADSHROOM;
         }
     }
     
@@ -487,20 +489,22 @@ public class ClassicUI extends BaseGame {
                 playSound(fileWin);
                 displayWinner();
                 displayHighScore();
+                badShrooms = DEFAULT_BADSHROOM;
                 return;
             }
             
             formatDialog();
             goToNextLevel();
             resetButtons();
+            badShrooms += 2;
+            assignPos(badShrooms);
+            print2d();
         }
     }
     
     private void resetButtons(){
         displayQuestionMarkButtons();
         resetGrid();
-        assignPos();
-        print2d();
     }
             
     private int getCurrentLevel() {
@@ -532,6 +536,24 @@ public class ClassicUI extends BaseGame {
     private void goToNextLevel() {
         final int NEXT_LEVEL = getCurrentLevel() + 1;
         lblLevel.setText(difficulty[NEXT_LEVEL]);
+    }
+    
+    public void assignPos(int badShroom) {
+        final int NUM_ROW_COL = 4;
+        
+        for(int i = 0; i < badShroom; i++) {
+            int x = (int) Math.floor(Math.random() * NUM_ROW_COL);
+            int y = (int) Math.floor(Math.random() * NUM_ROW_COL);
+            
+            if(grid[x][y] == BAD_SHROOM)
+                while(grid[x][y] == BAD_SHROOM)
+                {
+                    x = (int) Math.floor(Math.random() * NUM_ROW_COL);
+                    y = (int) Math.floor(Math.random() * NUM_ROW_COL);
+                }
+            
+            grid[x][y] = BAD_SHROOM;
+        }
     }
     
     private void displayWinner() {
@@ -568,12 +590,8 @@ public class ClassicUI extends BaseGame {
         try
         {            
             highScore = (HighScoreClassic) highScore.readHighScore(highScore.FILE_NAME).readObject();
-            
             var hsScore = highScore.getScore();
-            var hsName = highScore.getName();
-            var hsTime = highScore.getTime();
-            var hsLivesLeft = highScore.getLivesLeft();
-            
+           
             btnHighScore.setText(hsScore + "");
         }
         catch(Exception ex)

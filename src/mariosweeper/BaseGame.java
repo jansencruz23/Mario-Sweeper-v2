@@ -4,7 +4,6 @@ import components.Components;
 import fonts.Fonts;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
 import static java.lang.Thread.sleep;
@@ -13,7 +12,6 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,6 +22,7 @@ import settings.Settings;
 public class BaseGame extends JFrame {
     final int GOOD_SHROOM = 0;
     final int BAD_SHROOM = 1;
+    final int DEFAULT_BADSHROOM = 2;
     
     ImageIcon questionMark = setButtonIcon("/img/qm.png");
     ImageIcon goodShroom = setButtonIcon("/img/good.png");
