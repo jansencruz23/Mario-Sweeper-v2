@@ -23,6 +23,11 @@ public class BaseLeaderboardsSerializable implements Serializable, ILeaderboards
         leaderboards.add(0, highScore);
     }
     
+    public void addToLeaderboards(IHighScore iHighScore, int index) {
+        var highScore = (HighScoreClassic) iHighScore;
+        leaderboards.add(index -1, highScore);
+    }
+    
     public void saveLeaderboards(ILeaderboards leaderboards, String fileName) {
         try
         {

@@ -330,7 +330,7 @@ public class SpeedRunUI extends BaseGame {
         jLabel2.setBounds(500, 10, 80, 20);
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Developed by: Jansen C. Cruz");
+        jLabel4.setText("Developed by: Pang Colej Lang");
         jLabel4.setOpaque(true);
         getContentPane().add(jLabel4);
         jLabel4.setBounds(620, 460, 170, 16);
@@ -399,7 +399,7 @@ public class SpeedRunUI extends BaseGame {
         {
             setScore(currentScore + ADDITIONAL_POINTS);
             lblScore.setText(getScore() + "");
-            System.out.println(currentScore);
+
             
             stopTimer();
             formatDialog();
@@ -415,17 +415,13 @@ public class SpeedRunUI extends BaseGame {
         try
         {            
             highScore = (HighScoreSpeedRun) highScore.readHighScore(highScore.FILE_NAME).readObject();
-            
             var hsScore = highScore.getScore();
-            var hsName = highScore.getName();
-            var hsTime = highScore.getTime();
             
-            System.out.println(hsScore);
+            //System.out.println(hsScore);
             btnHighScore.setText(hsScore + "");
         }
         catch(Exception ex)
         {
-            System.out.println("nal");
             highScore = null;
         }
     }
@@ -441,7 +437,6 @@ public class SpeedRunUI extends BaseGame {
         else if(score == highScore.getScore() && time > highScore.getTime())
             return;
         
-        System.out.println("asd" + score);
         saveHighScore(score, time);
         saveLeaderboards();
         //leaderboards.addToLeaderboards(this.highScore);
@@ -478,7 +473,7 @@ public class SpeedRunUI extends BaseGame {
                     .readObject();
         }
         catch(Exception ex){
-            System.out.println("asd");
+
         }  
     }
     

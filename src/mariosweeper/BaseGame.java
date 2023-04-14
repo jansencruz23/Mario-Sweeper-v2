@@ -22,7 +22,7 @@ import settings.Settings;
 public class BaseGame extends JFrame {
     final int GOOD_SHROOM = 0;
     final int BAD_SHROOM = 1;
-    final int DEFAULT_BADSHROOM = 2;
+    final int DEFAULT_BADSHROOM = 3;
     
     ImageIcon questionMark = setButtonIcon("/img/qm.png");
     ImageIcon goodShroom = setButtonIcon("/img/good.png");
@@ -130,7 +130,7 @@ public class BaseGame extends JFrame {
     
     public void startTimer(JLabel txt){
         final int MAX_ITERATION = 1000;
-        final int MAX_TIME = 300;
+        final int MAX_TIME = 600;
         final int SLEEP_INTERVAL = 90;
         final double TENTHS = 10.0;
         
@@ -278,7 +278,7 @@ public class BaseGame extends JFrame {
             clip.start();
         }
         catch(Exception ex){
-            System.out.println("ero");
+
         }
     }
     

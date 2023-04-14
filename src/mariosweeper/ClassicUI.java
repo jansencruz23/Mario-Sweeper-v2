@@ -371,7 +371,7 @@ public class ClassicUI extends BaseGame {
         lblScore.setBounds(170, 40, 100, 40);
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Developed by: Jansen C. Cruz");
+        jLabel4.setText("Developed by: Pang Colej Lang");
         jLabel4.setOpaque(true);
         getContentPane().add(jLabel4);
         jLabel4.setBounds(620, 460, 170, 16);
@@ -460,6 +460,7 @@ public class ClassicUI extends BaseGame {
             formatDialog();
             stopTimer();
             checkHighScore();
+            //checkLeaderboard();
             showGameOver();
             panelLives.removeAll();
             setHearts();
@@ -538,10 +539,10 @@ public class ClassicUI extends BaseGame {
         lblLevel.setText(difficulty[NEXT_LEVEL]);
     }
     
-    public void assignPos(int badShroom) {
+    public void assignPos(int badShroomNum) {
         final int NUM_ROW_COL = 4;
         
-        for(int i = 0; i < badShroom; i++) {
+        for(int i = 0; i < badShroomNum; i++) {
             int x = (int) Math.floor(Math.random() * NUM_ROW_COL);
             int y = (int) Math.floor(Math.random() * NUM_ROW_COL);
             
@@ -601,13 +602,14 @@ public class ClassicUI extends BaseGame {
     }
     
     private void readLeaderboards(){
-        try{
+        try
+        {
             leaderboard = (LeaderboardsClassic) leaderboard
                     .readHighScore(leaderboard.FILE_NAME)
                     .readObject();
         }
         catch(Exception ex){
-            System.out.println("asd");
+
         }  
     }
     
@@ -626,6 +628,50 @@ public class ClassicUI extends BaseGame {
         saveLeaderboards();
     }
     
+    private void checkHighScore(HighScoreClassic hs, int index) {
+        var time = Double.parseDouble(lblTimer.getText());
+        var score = getScore();
+        
+        if(highScore == null)
+            highScore = new HighScoreClassic();
+        else if(score < hs.getScore()) 
+            return;
+        else if(score == hs.getScore() && time > hs.getTime())
+            return;
+        
+        saveHighScore(score, time);
+        saveLeaderboards(index);
+    }
+    
+    private void checkLeaderboard() {     
+        var time = Double.parseDouble(lblTimer.getText());
+        var score = getScore();
+        
+        if(leaderboard.getLeaderboards().size() <= 3)
+            for(int i = 0; i < 3; i++)
+            {
+                var hs = leaderboard.getLeaderboards().get(i);
+                var h = (HighScoreClassic) hs;
+                checkHighScore(h, i);
+            }
+        else
+        {
+            var h1 = (HighScoreClassic) leaderboard.getLeaderboards().get(0);
+            var h2 = (HighScoreClassic) leaderboard.getLeaderboards().get(1);
+            var h3 = (HighScoreClassic) leaderboard.getLeaderboards().get(2);
+            if(score < h1.getScore() && score > h2.getScore()){
+                saveHighScore(score, time);
+                checkHighScore(this.highScore, 1);
+            }
+            else if(score < h2.getScore() && score > h3.getScore())
+            {
+                saveHighScore(score, time);
+                checkHighScore(this.highScore, 2);
+            }
+            
+        }
+    }
+    
     private void saveHighScore(int score, double time){
         JOptionPane.showMessageDialog(null, "You beat the highscore!", "You Are The #1!", JOptionPane.INFORMATION_MESSAGE, mario);
         
@@ -639,6 +685,11 @@ public class ClassicUI extends BaseGame {
     
     private void saveLeaderboards(){
         leaderboard.addToLeaderboards(this.highScore);
+        leaderboard.saveLeaderboards(leaderboard, leaderboard.FILE_NAME);
+    }
+    
+    private void saveLeaderboards(int index){
+        leaderboard.addToLeaderboards(this.highScore, index);
         leaderboard.saveLeaderboards(leaderboard, leaderboard.FILE_NAME);
     }
     
